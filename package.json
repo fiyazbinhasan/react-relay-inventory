@@ -1,32 +1,24 @@
 {
   "name": "react-relay-inventory",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:fiyazbinhasan/react-relay-inventory.git",
+  "author": "Fiyaz Hasan <fiyazhasan@live.com>",
+  "license": "MIT",
   "dependencies": {
-    "@material-ui/core": "^3.9.2",
-    "@material-ui/icons": "^3.0.2",
-    "@types/jest": "24.0.9",
-    "@types/node": "11.9.5",
-    "@types/react": "16.8.5",
-    "@types/react-dom": "16.8.2",
+    "express": "^4.16.4",
     "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5",
-    "typescript": "3.3.3333"
+    "react-dom": "^16.8.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+    "start": "./node_modules/.bin/babel-node --presets @babel/preset-env,@babel/preset-react server.js"
+  }
 }
