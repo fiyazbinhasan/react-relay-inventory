@@ -5,17 +5,19 @@
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
-    "@types/jest": "24.0.9",
-    "@types/node": "11.9.5",
-    "@types/react": "16.8.5",
-    "@types/react-dom": "16.8.2",
-    "@types/react-relay": "^1.3.12",
     "babel-plugin-relay": "^2.0.0-rc.2",
     "node-sass": "^4.11.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "react-redux": "^6.0.1",
     "react-relay": "^3.0.0",
+    "react-router-dom": "^4.3.1",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "2.1.5",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "typescript": "^3.3.3333"
   },
   "scripts": {
@@ -23,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "relay": "curl http://localhost:5000/schema.json -o ./src/graphql.json && relay-compiler --src ./src --schema ./src/graphql.json --language typescript"
+    "relay": "curl http://localhost:5000/schema.json -o ./src/schema/graphql.json && relay-compiler --src ./src --schema ./src/schema/graphql.json --language typescript"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,7 +37,18 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/jest": "^24.0.9",
+    "@types/node": "^11.10.5",
+    "@types/node-sass": "^4.11.0",
+    "@types/prop-types": "^15.7.0",
+    "@types/react": "^16.8.7",
+    "@types/react-dom": "^16.8.2",
+    "@types/react-redux": "^7.0.2",
+    "@types/react-relay": "^1.3.12",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/react-router-redux": "^5.0.18",
     "graphql": "^14.1.1",
+    "redux-devtools-extension": "^2.13.8",
     "relay-compiler": "^3.0.0",
     "relay-compiler-language-typescript": "^2.0.0"
   }
