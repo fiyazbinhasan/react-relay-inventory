@@ -36,7 +36,7 @@ fragment ItemList_store on Store {
 }
 
 fragment CustomerList_store on Store {
-  customers(first: 1) {
+  customers(first: 3) {
     edges {
       node {
         id
@@ -84,7 +84,7 @@ v2 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 1,
+    "value": 3,
     "type": "Int"
   }
 ];
@@ -168,7 +168,7 @@ return {
             "kind": "LinkedField",
             "alias": null,
             "name": "customers",
-            "storageKey": "customers(first:1)",
+            "storageKey": "customers(first:3)",
             "args": (v2/*: any*/),
             "concreteType": "CustomerConnection",
             "plural": false,
@@ -268,7 +268,7 @@ return {
     "operationKind": "query",
     "name": "ConsoleQuery",
     "id": null,
-    "text": "query ConsoleQuery {\n  store {\n    id\n    totalCount\n    ...ItemList_store\n    ...CustomerList_store\n  }\n}\n\nfragment ItemList_store on Store {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 1) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
+    "text": "query ConsoleQuery {\n  store {\n    id\n    totalCount\n    ...ItemList_store\n    ...CustomerList_store\n  }\n}\n\nfragment ItemList_store on Store {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 3) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
     "metadata": {}
   }
 };

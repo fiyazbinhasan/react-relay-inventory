@@ -48,7 +48,7 @@ return {
       "kind": "LocalArgument",
       "name": "limit",
       "type": "Int",
-      "defaultValue": 1
+      "defaultValue": 3
     }
   ],
   "selections": [
@@ -141,5 +141,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '80c3e5982be099d6ce7aeec92475fcb6';
+(node as any).hash = '087e2f167e63092d3925a40512a88e68';
 export default node;

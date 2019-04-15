@@ -38,8 +38,7 @@ function sharedUpdater(
   const storeProxy = rssProxy.get(store.id);
   const conn = ConnectionHandler.getConnection(
     storeProxy,
-    'CustomerList_customers',
-    { first: 1 }
+    'CustomerList_customers'
   );
   ConnectionHandler.insertEdgeAfter(conn, newEdge);
 }

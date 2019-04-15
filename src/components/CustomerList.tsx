@@ -16,13 +16,11 @@ interface RelayProps {
 type Props = RelayProps & OwnProps;
 
 class CustomerList extends React.Component<Props> {
-  refetchVariables = (limit: number) => ({
-    limit: limit
-  });
-
-  setLimit = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    let newLimit = Number(e.target.value);
-    this.props.relay.refetch(this.refetchVariables(newLimit));
+  loadMore = (event: React.FormEvent<HTMLButtonElement>) => {
+    const refetchVariables = (fragmentVariables: any) => ({
+      limit: fragmentVariables.limit + 3
+    });
+    this.props.relay.refetch(refetchVariables);
   };
 
   onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,12 +53,9 @@ class CustomerList extends React.Component<Props> {
           <input type="text" ref="newBillingAddress" />
           <button type="submit">Add</button>
         </form>
-        <select onChange={this.setLimit}>
-          <option>1</option>
-          <option>3</option>
-          <option>5</option>
-        </select>
         <ul>{this.renderCustomers()}</ul>
+        <button onClick={this.loadMore}>Load More</button>
+
         <p>Total customers: {this.props.store.totalCount}</p>
       </div>
     );
@@ -73,7 +68,7 @@ export default createRefetchContainer(
     store: graphql`
       fragment CustomerList_store on Store
         @argumentDefinitions(
-          limit: { type: "Int", defaultValue: 1 } # Optional argument
+          limit: { type: "Int", defaultValue: 3 } # Optional argument
         ) {
         customers(first: $limit) @connection(key: "CustomerList_customers") {
           edges {
