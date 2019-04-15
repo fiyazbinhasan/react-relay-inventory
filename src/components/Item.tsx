@@ -8,14 +8,17 @@ interface Props {
 
 class Item extends React.Component<Props> {
   render() {
-    return <li key={this.props.item.id}>{this.props.item.title}</li>;
+    return (
+      <li>
+        {this.props.item.title} - ${this.props.item.sellingPrice}
+      </li>
+    );
   }
 }
 
 export default createFragmentContainer(Item, {
   item: graphql`
     fragment Item_item on Item {
-      id
       title
       sellingPrice
     }

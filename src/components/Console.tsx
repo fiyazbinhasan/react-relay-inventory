@@ -3,6 +3,7 @@ import * as React from 'react';
 import { QueryRenderer, createFragmentContainer } from 'react-relay';
 import environment from '../utility/relayEnvironment';
 import ItemList from './ItemList';
+import CustomerList from './CustomerList';
 const graphql = require('babel-plugin-relay/macro');
 
 interface Props {
@@ -13,7 +14,10 @@ interface Props {
 const query = graphql`
   query ConsoleQuery {
     store {
+      id
+      totalCount
       ...ItemList_store
+      ...CustomerList_store
     }
   }
 `;
@@ -37,6 +41,7 @@ export default class DevConsole extends React.Component<Props> {
               <p>Token: {this.props.token}</p>
               <p>Error: {this.props.error}</p>
               <ItemList store={props.store} />
+              <CustomerList store={props.store} />
             </div>
           );
         }}

@@ -2,41 +2,33 @@
 
 import { ConcreteRequest } from "relay-runtime";
 type CustomerList_store$ref = any;
-type ItemList_store$ref = any;
-export type ConsoleQueryVariables = {};
-export type ConsoleQueryResponse = {
+export type CustomerListRefetchQueryVariables = {
+    readonly limit?: number | null;
+};
+export type CustomerListRefetchQueryResponse = {
     readonly store: ({
-        readonly id: string;
-        readonly totalCount: number | null;
-        readonly " $fragmentRefs": ItemList_store$ref & CustomerList_store$ref;
+        readonly " $fragmentRefs": CustomerList_store$ref;
     }) | null;
 };
-export type ConsoleQuery = {
-    readonly response: ConsoleQueryResponse;
-    readonly variables: ConsoleQueryVariables;
+export type CustomerListRefetchQuery = {
+    readonly response: CustomerListRefetchQueryResponse;
+    readonly variables: CustomerListRefetchQueryVariables;
 };
 
 
 
 /*
-query ConsoleQuery {
+query CustomerListRefetchQuery(
+  $limit: Int
+) {
   store {
+    ...CustomerList_store_1UvIyz
     id
-    totalCount
-    ...ItemList_store
-    ...CustomerList_store
   }
 }
 
-fragment ItemList_store on Store {
-  items {
-    id
-    ...Item_item
-  }
-}
-
-fragment CustomerList_store on Store {
-  customers(first: 1) {
+fragment CustomerList_store_1UvIyz on Store {
+  customers(first: $limit) {
     edges {
       node {
         id
@@ -58,44 +50,40 @@ fragment Customer_customer on Customer {
   name
   billingAddress
 }
-
-fragment Item_item on Item {
-  title
-  sellingPrice
-}
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = {
+var v0 = [
+  {
+    "kind": "LocalArgument",
+    "name": "limit",
+    "type": "Int",
+    "defaultValue": null
+  }
+],
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "limit",
+    "type": "Int"
+  }
+],
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
-},
-v1 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "totalCount",
-  "args": null,
-  "storageKey": null
-},
-v2 = [
-  {
-    "kind": "Literal",
-    "name": "first",
-    "value": 1,
-    "type": "Int"
-  }
-];
+};
 return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "ConsoleQuery",
+    "name": "CustomerListRefetchQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -106,17 +94,17 @@ return {
         "concreteType": "Store",
         "plural": false,
         "selections": [
-          (v0/*: any*/),
-          (v1/*: any*/),
-          {
-            "kind": "FragmentSpread",
-            "name": "ItemList_store",
-            "args": null
-          },
           {
             "kind": "FragmentSpread",
             "name": "CustomerList_store",
-            "args": null
+            "args": [
+              {
+                "kind": "Variable",
+                "name": "limit",
+                "variableName": "limit",
+                "type": null
+              }
+            ]
           }
         ]
       }
@@ -124,8 +112,8 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "ConsoleQuery",
-    "argumentDefinitions": [],
+    "name": "CustomerListRefetchQuery",
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -136,40 +124,12 @@ return {
         "concreteType": "Store",
         "plural": false,
         "selections": [
-          (v0/*: any*/),
-          (v1/*: any*/),
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "items",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Item",
-            "plural": true,
-            "selections": [
-              (v0/*: any*/),
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "title",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "sellingPrice",
-                "args": null,
-                "storageKey": null
-              }
-            ]
-          },
           {
             "kind": "LinkedField",
             "alias": null,
             "name": "customers",
-            "storageKey": "customers(first:1)",
-            "args": (v2/*: any*/),
+            "storageKey": null,
+            "args": (v1/*: any*/),
             "concreteType": "CustomerConnection",
             "plural": false,
             "selections": [
@@ -191,7 +151,7 @@ return {
                     "concreteType": "Customer",
                     "plural": false,
                     "selections": [
-                      (v0/*: any*/),
+                      (v2/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -255,10 +215,18 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "customers",
-            "args": (v2/*: any*/),
+            "args": (v1/*: any*/),
             "handle": "connection",
             "key": "CustomerList_customers",
             "filters": null
+          },
+          (v2/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "totalCount",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -266,12 +234,12 @@ return {
   },
   "params": {
     "operationKind": "query",
-    "name": "ConsoleQuery",
+    "name": "CustomerListRefetchQuery",
     "id": null,
-    "text": "query ConsoleQuery {\n  store {\n    id\n    totalCount\n    ...ItemList_store\n    ...CustomerList_store\n  }\n}\n\nfragment ItemList_store on Store {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 1) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
+    "text": "query CustomerListRefetchQuery(\n  $limit: Int\n) {\n  store {\n    ...CustomerList_store_1UvIyz\n    id\n  }\n}\n\nfragment CustomerList_store_1UvIyz on Store {\n  customers(first: $limit) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '095bb4af90466ea93d285c7644bb3f88';
+(node as any).hash = 'c009eb792710553093b61ac8a99bd6fa';
 export default node;

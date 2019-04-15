@@ -1,37 +1,37 @@
 /* tslint:disable */
 
 import { ReaderFragment } from "relay-runtime";
-export type Item_item$ref = any;
-export type Item_item = {
-    readonly title: string;
-    readonly sellingPrice: any;
-    readonly " $refType": Item_item$ref;
+export type Customer_customer$ref = any;
+export type Customer_customer = {
+    readonly name: string;
+    readonly billingAddress: string;
+    readonly " $refType": Customer_customer$ref;
 };
 
 
 
 const node: ReaderFragment = {
   "kind": "Fragment",
-  "name": "Item_item",
-  "type": "Item",
+  "name": "Customer_customer",
+  "type": "Customer",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "title",
+      "name": "name",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "sellingPrice",
+      "name": "billingAddress",
       "args": null,
       "storageKey": null
     }
   ]
 };
-(node as any).hash = 'ccd9c2a15d649577e28a4ee69357c189';
+(node as any).hash = 'ac29c5444dd8a3eee7038a75c92c62d1';
 export default node;

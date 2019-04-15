@@ -5,6 +5,7 @@ type Item_item$ref = any;
 export type ItemList_store$ref = any;
 export type ItemList_store = {
     readonly items: ReadonlyArray<({
+        readonly id: string;
         readonly " $fragmentRefs": Item_item$ref;
     }) | null> | null;
     readonly " $refType": ItemList_store$ref;
@@ -29,6 +30,13 @@ const node: ReaderFragment = {
       "plural": true,
       "selections": [
         {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "id",
+          "args": null,
+          "storageKey": null
+        },
+        {
           "kind": "FragmentSpread",
           "name": "Item_item",
           "args": null
@@ -37,5 +45,5 @@ const node: ReaderFragment = {
     }
   ]
 };
-(node as any).hash = '0152d446725046a210958f60fce4164e';
+(node as any).hash = '47b98ef546131da1fadbaec0e0abf1c0';
 export default node;

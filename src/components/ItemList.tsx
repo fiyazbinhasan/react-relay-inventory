@@ -12,7 +12,7 @@ class ItemList extends React.Component<Props> {
     return (
       <ul>
         {this.props.store.items.map((item: any) => (
-          <Item item={item} />
+          <Item key={item.id} item={item} />
         ))}
       </ul>
     );
@@ -23,6 +23,7 @@ export default createFragmentContainer(ItemList, {
   store: graphql`
     fragment ItemList_store on Store {
       items {
+        id
         ...Item_item
       }
     }
