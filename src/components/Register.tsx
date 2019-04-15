@@ -11,8 +11,10 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { Theme, createStyles } from '@material-ui/core';
-import { RegisterModel } from '../store/auth/types';
+import { RegisterModel, AuthState } from '../store/auth/types';
 import { Link } from 'react-router-dom';
+import { ThunkAction } from 'redux-thunk';
+import { Action } from 'redux';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -49,7 +51,16 @@ const styles = (theme: Theme) =>
   });
 
 interface Props extends WithStyles<typeof styles> {
-  registerUser: (registerModel: RegisterModel) => void;
+  registerUser: (
+    registerModel: RegisterModel
+  ) => ThunkAction<
+    void,
+    {
+      auth: AuthState;
+    },
+    null,
+    Action<string>
+  >;
   registering: boolean;
 }
 

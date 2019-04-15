@@ -5,6 +5,7 @@ import {
   ConnectionHandler,
   RecordProxy
 } from 'relay-runtime';
+import { CustomerList_store } from '../components/__generated__/CustomerList_store.graphql';
 
 const graphql = require('babel-plugin-relay/macro');
 
@@ -30,16 +31,16 @@ const mutation = graphql`
 `;
 
 function sharedUpdater(
-  recordSource: RecordSourceSelectorProxy,
-  store: any,
+  rssProxy: RecordSourceSelectorProxy,
+  store: CustomerList_store,
   newEdge: RecordProxy | null
 ) {
-  const storeProxy = recordSource.get(store.id);
+  const storeProxy = rssProxy.get(store.id);
   const conn = ConnectionHandler.getConnection(
     storeProxy,
-    'CustomerList_customers'
+    'CustomerList_customers',
+    { first: 1 }
   );
-  console.log(conn);
   ConnectionHandler.insertEdgeAfter(conn, newEdge);
 }
 
@@ -47,7 +48,7 @@ let tempID = 0;
 
 function commit(
   environment: Environment,
-  store: any,
+  store: CustomerList_store,
   name: string,
   billingAddress: string
 ) {
@@ -60,40 +61,37 @@ function commit(
         clientMutationId: tempID++
       }
     },
-    updater: (recordSource: RecordSourceSelectorProxy) => {
-      const payload: RecordProxy | null = recordSource.getRootField(
+    updater: (rssProxy: RecordSourceSelectorProxy) => {
+      const payload: RecordProxy | null = rssProxy.getRootField(
         'createCustomer'
       );
 
       if (payload !== null) {
         const newEdge = payload.getLinkedRecord('customerEdge');
-        sharedUpdater(recordSource, store, newEdge);
+        sharedUpdater(rssProxy, store, newEdge);
       }
     },
-    optimisticUpdater: (recordSource: RecordSourceSelectorProxy) => {
-      // Create a Todo record in our store with a temporary ID
+    optimisticUpdater: (rssProxy: RecordSourceSelectorProxy) => {
       const id = 'client:newCustomer:' + tempID++;
-      const node = recordSource.create(id, 'Customer');
+      const node = rssProxy.create(id, 'Customer');
       node.setValue(name, 'name');
       node.setValue(billingAddress, 'billingAddress');
       node.setValue(id, 'id');
 
-      // Create a new edge that contains the newly created Todo record
-      const newEdge = recordSource.create(
+      const newEdge = rssProxy.create(
         'client:newEdge:' + tempID++,
         'CustomerEdge'
       );
 
       newEdge.setLinkedRecord(node, 'node');
-      sharedUpdater(recordSource, store, newEdge);
+      sharedUpdater(rssProxy, store, newEdge);
 
-      const storeProxy = recordSource.get(store.id);
-      console.log(storeProxy!.getValue('totalCount'));
-
-      storeProxy!.setValue(
-        storeProxy!.getValue('totalCount') + 1,
-        'totalCount'
-      );
+      const storeProxy = rssProxy.get(store.id);
+      if (storeProxy)
+        storeProxy.setValue(
+          storeProxy.getValue('totalCount') + 1,
+          'totalCount'
+        );
     },
     onCompleted: (response, errors) => {
       console.log('Response received from server.');

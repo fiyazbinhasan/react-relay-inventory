@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { createRefetchContainer } from 'react-relay';
+import { createRefetchContainer, RelayRefetchProp } from 'react-relay';
 import Customer from './Customer';
 import createCustomer from '../mutations/createCustomer';
+import { CustomerList_store } from './__generated__/CustomerList_store.graphql';
 const graphql = require('babel-plugin-relay/macro');
 
 interface OwnProps {
-  store: any;
+  store: CustomerList_store;
 }
 
 interface RelayProps {
-  relay: any;
+  relay: RelayRefetchProp;
 }
 
 type Props = RelayProps & OwnProps;
@@ -35,6 +36,17 @@ class CustomerList extends React.Component<Props> {
     );
   };
 
+  renderCustomers() {
+    if (!this.props.store.customers || !this.props.store.customers.edges) {
+      throw new Error('assertion failed');
+    }
+    return this.props.store.customers.edges.map(edge => {
+      const node = edge && edge.node;
+      if (!node) throw new Error('assertion failed');
+      return <Customer key={node.id} customer={node} />;
+    });
+  }
+
   render() {
     return (
       <div>
@@ -48,11 +60,7 @@ class CustomerList extends React.Component<Props> {
           <option>3</option>
           <option>5</option>
         </select>
-        <ul>
-          {this.props.store.customers.edges.map((edge: any) => (
-            <Customer key={edge.node.id} customer={edge.node} />
-          ))}
-        </ul>
+        <ul>{this.renderCustomers()}</ul>
         <p>Total customers: {this.props.store.totalCount}</p>
       </div>
     );

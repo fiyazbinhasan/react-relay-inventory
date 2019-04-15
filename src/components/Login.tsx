@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { LoginModel } from '../store/auth/types';
+import { LoginModel, AuthState } from '../store/auth/types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,6 +15,8 @@ import Typography from '@material-ui/core/Typography';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { Theme, createStyles } from '@material-ui/core';
 import { Link, NavLink, Redirect } from 'react-router-dom';
+import { Action } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -51,7 +53,9 @@ const styles = (theme: Theme) =>
   });
 
 interface Props extends WithStyles<typeof styles> {
-  loginUser: (loginModel: LoginModel) => string;
+  loginUser: (
+    loginModel: LoginModel
+  ) => ThunkAction<void, { auth: AuthState }, null, Action<string>>;
   loggingIn: boolean;
   isLoggedIn: boolean;
 }

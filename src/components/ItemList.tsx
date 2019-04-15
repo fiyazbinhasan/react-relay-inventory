@@ -1,21 +1,25 @@
 import * as React from 'react';
 import { createFragmentContainer } from 'react-relay';
 import Item from './Item';
+import { ItemList_store } from './__generated__/ItemList_store.graphql';
 const graphql = require('babel-plugin-relay/macro');
 
 interface Props {
-  store: any;
+  store: ItemList_store;
 }
 
 class ItemList extends React.Component<Props> {
+  renderItems() {
+    if (!this.props.store.items) {
+      throw new Error('assertion failed');
+    }
+    return this.props.store.items.map(item => {
+      if (!item) throw new Error('assertion failed');
+      return <Item key={item.id} item={item} />;
+    });
+  }
   render() {
-    return (
-      <ul>
-        {this.props.store.items.map((item: any) => (
-          <Item key={item.id} item={item} />
-        ))}
-      </ul>
-    );
+    return <ul>{this.renderItems()}</ul>;
   }
 }
 
