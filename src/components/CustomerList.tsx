@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { createRefetchContainer, RelayRefetchProp } from 'react-relay';
+import {
+  createRefetchContainer,
+  RelayRefetchProp,
+  FragmentVariablesGetter
+} from 'react-relay';
 import Customer from './Customer';
 import createCustomer from '../mutations/createCustomer';
 import { CustomerList_store } from './__generated__/CustomerList_store.graphql';
@@ -15,10 +19,14 @@ interface RelayProps {
 
 type Props = RelayProps & OwnProps;
 
+interface State {
+  limit: number;
+}
+
 class CustomerList extends React.Component<Props> {
   loadMore = (event: React.FormEvent<HTMLButtonElement>) => {
     const refetchVariables = (fragmentVariables: any) => ({
-      limit: fragmentVariables.limit + 3
+      limit: fragmentVariables.limit + 10
     });
     this.props.relay.refetch(refetchVariables);
   };

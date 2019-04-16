@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createFragmentContainer } from 'react-relay';
 import { Customer_customer } from './__generated__/Customer_customer.graphql';
+import OrderList from './OrderList';
 const graphql = require('babel-plugin-relay/macro');
 
 interface Props {
@@ -11,7 +12,8 @@ class Customer extends React.Component<Props> {
   render() {
     return (
       <li>
-        {this.props.customer.name} - {this.props.customer.billingAddress}
+        <a href="">{this.props.customer.name} </a>
+        <OrderList customer={this.props.customer} />
       </li>
     );
   }
@@ -22,6 +24,7 @@ export default createFragmentContainer(Customer, {
     fragment Customer_customer on Customer {
       name
       billingAddress
+      ...OrderList_customer
     }
   `
 });

@@ -49,6 +49,29 @@ fragment CustomerList_store_1UvIyz on Store {
 fragment Customer_customer on Customer {
   name
   billingAddress
+  ...OrderList_customer
+}
+
+fragment OrderList_customer on Customer {
+  orders(first: 3) {
+    edges {
+      node {
+        id
+        ...Order_order
+        __typename
+      }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}
+
+fragment Order_order on Order {
+  tag
+  createdAt
 }
 */
 
@@ -75,6 +98,53 @@ v2 = {
   "name": "id",
   "args": null,
   "storageKey": null
+},
+v3 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 3,
+    "type": "Int"
+  }
+],
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "__typename",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "cursor",
+  "args": null,
+  "storageKey": null
+},
+v6 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "pageInfo",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "PageInfo",
+  "plural": false,
+  "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "endCursor",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "hasNextPage",
+      "args": null,
+      "storageKey": null
+    }
+  ]
 };
 return {
   "kind": "Request",
@@ -167,48 +237,72 @@ return {
                         "storageKey": null
                       },
                       {
-                        "kind": "ScalarField",
+                        "kind": "LinkedField",
                         "alias": null,
-                        "name": "__typename",
-                        "args": null,
-                        "storageKey": null
-                      }
+                        "name": "orders",
+                        "storageKey": "orders(first:3)",
+                        "args": (v3/*: any*/),
+                        "concreteType": "OrderConnection",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "LinkedField",
+                            "alias": null,
+                            "name": "edges",
+                            "storageKey": null,
+                            "args": null,
+                            "concreteType": "OrderEdge",
+                            "plural": true,
+                            "selections": [
+                              {
+                                "kind": "LinkedField",
+                                "alias": null,
+                                "name": "node",
+                                "storageKey": null,
+                                "args": null,
+                                "concreteType": "Order",
+                                "plural": false,
+                                "selections": [
+                                  (v2/*: any*/),
+                                  {
+                                    "kind": "ScalarField",
+                                    "alias": null,
+                                    "name": "tag",
+                                    "args": null,
+                                    "storageKey": null
+                                  },
+                                  {
+                                    "kind": "ScalarField",
+                                    "alias": null,
+                                    "name": "createdAt",
+                                    "args": null,
+                                    "storageKey": null
+                                  },
+                                  (v4/*: any*/)
+                                ]
+                              },
+                              (v5/*: any*/)
+                            ]
+                          },
+                          (v6/*: any*/)
+                        ]
+                      },
+                      {
+                        "kind": "LinkedHandle",
+                        "alias": null,
+                        "name": "orders",
+                        "args": (v3/*: any*/),
+                        "handle": "connection",
+                        "key": "OrderList_orders",
+                        "filters": null
+                      },
+                      (v4/*: any*/)
                     ]
                   },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "cursor",
-                    "args": null,
-                    "storageKey": null
-                  }
+                  (v5/*: any*/)
                 ]
               },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "pageInfo",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "PageInfo",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "endCursor",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "hasNextPage",
-                    "args": null,
-                    "storageKey": null
-                  }
-                ]
-              }
+              (v6/*: any*/)
             ]
           },
           {
@@ -236,7 +330,7 @@ return {
     "operationKind": "query",
     "name": "CustomerListRefetchQuery",
     "id": null,
-    "text": "query CustomerListRefetchQuery(\n  $limit: Int\n) {\n  store {\n    ...CustomerList_store_1UvIyz\n    id\n  }\n}\n\nfragment CustomerList_store_1UvIyz on Store {\n  customers(first: $limit) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n}\n",
+    "text": "query CustomerListRefetchQuery(\n  $limit: Int\n) {\n  store {\n    ...CustomerList_store_1UvIyz\n    id\n  }\n}\n\nfragment CustomerList_store_1UvIyz on Store {\n  customers(first: $limit) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n",
     "metadata": {}
   }
 };
