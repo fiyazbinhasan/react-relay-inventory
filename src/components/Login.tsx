@@ -82,7 +82,7 @@ export const LoginInterface = withStyles(styles)(
     render() {
       const { classes, isLoggedIn } = this.props;
 
-      if (isLoggedIn) return <Redirect to="/console" />;
+      if (isLoggedIn) return <Redirect to="/main" />;
       else
         return (
           <main className={classes.main}>

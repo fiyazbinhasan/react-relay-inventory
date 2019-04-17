@@ -20,14 +20,6 @@ const mutation = graphql`
           id
           billingAddress
           name
-          orders {
-            edges {
-              node {
-                tag
-                createdAt
-              }
-            }
-          }
         }
       }
       store {

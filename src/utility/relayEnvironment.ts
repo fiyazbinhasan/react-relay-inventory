@@ -6,8 +6,11 @@ import {
   Variables,
   RequestNode
 } from 'relay-runtime';
-
+import createFarceRouter from 'found/lib/createFarceRouter';
+import createRender from 'found/lib/createRender';
+import routes from '../components/routes';
 import { loadToken } from './localStorage';
+const { HashProtocol, queryMiddleware } = require('farce');
 
 const fetchQuery = (operation: RequestNode, variables: Variables) => {
   return fetch('http://localhost:5000/api/graphql', {
@@ -30,4 +33,12 @@ const environment = new Environment({
   store: new Store(new RecordSource())
 });
 
-export default environment;
+const Router = createFarceRouter({
+  historyProtocol: new HashProtocol(),
+  historyMiddlewares: [queryMiddleware],
+  routeConfig: routes,
+
+  render: createRender({})
+});
+
+export { environment, Router };

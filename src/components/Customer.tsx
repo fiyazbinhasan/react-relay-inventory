@@ -10,12 +10,7 @@ interface Props {
 
 class Customer extends React.Component<Props> {
   render() {
-    return (
-      <li>
-        <a href="">{this.props.customer.name} </a>
-        <OrderList customer={this.props.customer} />
-      </li>
-    );
+    return <li>{this.props.customer.name}</li>;
   }
 }
 

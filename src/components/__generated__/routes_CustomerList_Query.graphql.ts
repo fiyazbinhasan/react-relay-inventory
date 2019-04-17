@@ -2,36 +2,24 @@
 
 import { ConcreteRequest } from "relay-runtime";
 type CustomerList_store$ref = any;
-type ItemList_store$ref = any;
-export type ConsoleQueryVariables = {};
-export type ConsoleQueryResponse = {
+export type routes_CustomerList_QueryVariables = {};
+export type routes_CustomerList_QueryResponse = {
     readonly store: ({
-        readonly id: string;
-        readonly totalCount: number | null;
-        readonly " $fragmentRefs": ItemList_store$ref & CustomerList_store$ref;
+        readonly " $fragmentRefs": CustomerList_store$ref;
     }) | null;
 };
-export type ConsoleQuery = {
-    readonly response: ConsoleQueryResponse;
-    readonly variables: ConsoleQueryVariables;
+export type routes_CustomerList_Query = {
+    readonly response: routes_CustomerList_QueryResponse;
+    readonly variables: routes_CustomerList_QueryVariables;
 };
 
 
 
 /*
-query ConsoleQuery {
+query routes_CustomerList_Query {
   store {
-    id
-    totalCount
-    ...ItemList_store
     ...CustomerList_store
-  }
-}
-
-fragment ItemList_store on Store {
-  items {
     id
-    ...Item_item
   }
 }
 
@@ -81,29 +69,10 @@ fragment Order_order on Order {
   tag
   createdAt
 }
-
-fragment Item_item on Item {
-  title
-  sellingPrice
-}
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v1 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "totalCount",
-  "args": null,
-  "storageKey": null
-},
-v2 = [
+var v0 = [
   {
     "kind": "Literal",
     "name": "first",
@@ -111,21 +80,28 @@ v2 = [
     "type": "Int"
   }
 ],
-v3 = {
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "__typename",
   "args": null,
   "storageKey": null
 },
-v4 = {
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "cursor",
   "args": null,
   "storageKey": null
 },
-v5 = {
+v4 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "pageInfo",
@@ -154,7 +130,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "ConsoleQuery",
+    "name": "routes_CustomerList_Query",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": [],
@@ -168,13 +144,6 @@ return {
         "concreteType": "Store",
         "plural": false,
         "selections": [
-          (v0/*: any*/),
-          (v1/*: any*/),
-          {
-            "kind": "FragmentSpread",
-            "name": "ItemList_store",
-            "args": null
-          },
           {
             "kind": "FragmentSpread",
             "name": "CustomerList_store",
@@ -186,7 +155,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "ConsoleQuery",
+    "name": "routes_CustomerList_Query",
     "argumentDefinitions": [],
     "selections": [
       {
@@ -198,40 +167,12 @@ return {
         "concreteType": "Store",
         "plural": false,
         "selections": [
-          (v0/*: any*/),
-          (v1/*: any*/),
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "items",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Item",
-            "plural": true,
-            "selections": [
-              (v0/*: any*/),
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "title",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "sellingPrice",
-                "args": null,
-                "storageKey": null
-              }
-            ]
-          },
           {
             "kind": "LinkedField",
             "alias": null,
             "name": "customers",
             "storageKey": "customers(first:3)",
-            "args": (v2/*: any*/),
+            "args": (v0/*: any*/),
             "concreteType": "CustomerConnection",
             "plural": false,
             "selections": [
@@ -253,7 +194,7 @@ return {
                     "concreteType": "Customer",
                     "plural": false,
                     "selections": [
-                      (v0/*: any*/),
+                      (v1/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -273,7 +214,7 @@ return {
                         "alias": null,
                         "name": "orders",
                         "storageKey": "orders(first:3)",
-                        "args": (v2/*: any*/),
+                        "args": (v0/*: any*/),
                         "concreteType": "OrderConnection",
                         "plural": false,
                         "selections": [
@@ -295,7 +236,7 @@ return {
                                 "concreteType": "Order",
                                 "plural": false,
                                 "selections": [
-                                  (v0/*: any*/),
+                                  (v1/*: any*/),
                                   {
                                     "kind": "ScalarField",
                                     "alias": null,
@@ -310,41 +251,49 @@ return {
                                     "args": null,
                                     "storageKey": null
                                   },
-                                  (v3/*: any*/)
+                                  (v2/*: any*/)
                                 ]
                               },
-                              (v4/*: any*/)
+                              (v3/*: any*/)
                             ]
                           },
-                          (v5/*: any*/)
+                          (v4/*: any*/)
                         ]
                       },
                       {
                         "kind": "LinkedHandle",
                         "alias": null,
                         "name": "orders",
-                        "args": (v2/*: any*/),
+                        "args": (v0/*: any*/),
                         "handle": "connection",
                         "key": "OrderList_orders",
                         "filters": null
                       },
-                      (v3/*: any*/)
+                      (v2/*: any*/)
                     ]
                   },
-                  (v4/*: any*/)
+                  (v3/*: any*/)
                 ]
               },
-              (v5/*: any*/)
+              (v4/*: any*/)
             ]
           },
           {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "customers",
-            "args": (v2/*: any*/),
+            "args": (v0/*: any*/),
             "handle": "connection",
             "key": "CustomerList_customers",
             "filters": null
+          },
+          (v1/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "totalCount",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -352,12 +301,12 @@ return {
   },
   "params": {
     "operationKind": "query",
-    "name": "ConsoleQuery",
+    "name": "routes_CustomerList_Query",
     "id": null,
-    "text": "query ConsoleQuery {\n  store {\n    id\n    totalCount\n    ...ItemList_store\n    ...CustomerList_store\n  }\n}\n\nfragment ItemList_store on Store {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 3) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
+    "text": "query routes_CustomerList_Query {\n  store {\n    ...CustomerList_store\n    id\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 3) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '095bb4af90466ea93d285c7644bb3f88';
+(node as any).hash = '7cb6db8aaed1d66890d65eff22aadfae';
 export default node;
