@@ -16,31 +16,30 @@ import { Link, Redirect } from 'react-router-dom';
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    '@global': {
-      body: {
-        backgroundColor: theme.palette.common.white,
-      },
+const styles = (theme: Theme) => createStyles({
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.common.white,
     },
-    paper: {
-      marginTop: theme.spacing(8),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(3),
-    },
-    submit: {
-      margin: theme.spacing(3, 0, 2),
-    },
-  });
+  },
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2)
+  },
+});
 
 interface Props extends WithStyles<typeof styles> {
   registerUser: (
@@ -175,7 +174,7 @@ export const RegisterInterface = withStyles(styles)(
                 >
                   Sign Up
               </Button>
-                <Grid container justify="flex-end">
+                <Grid container justify="center">
                   <Grid item>
                     <Link to="/login">
                       Already have an account? Sign in

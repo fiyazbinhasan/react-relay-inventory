@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { Theme, createStyles } from '@material-ui/core';
-import { Link, NavLink, Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
