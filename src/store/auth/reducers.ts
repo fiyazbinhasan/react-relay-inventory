@@ -14,6 +14,7 @@ const initialState: AuthState = {
   registering: false,
   loggingIn: false,
   isLoggedIn: false,
+  isRegistered: false,
   token: '',
   error: ''
 };
@@ -26,7 +27,7 @@ export function authReducer(
     case REGISTER_USER_REQUEST:
       return { ...state, registering: true };
     case REGISTER_USER_SUCCESS:
-      return { ...state, registering: false };
+      return { ...state, registering: false, isRegistered: true };
     case REGISTER_USER_FAILURE:
       return { ...state, registering: false, error: action.payload };
     case LOGIN_USER_REQUEST:

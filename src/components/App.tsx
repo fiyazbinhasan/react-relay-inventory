@@ -32,6 +32,7 @@ class App extends React.Component<AppProps> {
             render={props => (
               <RegisterInterface
                 {...props}
+                isRegistered={this.props.auth.isRegistered}
                 registerUser={this.props.registerUser}
                 registering={this.props.auth.registering}
               />
@@ -49,7 +50,8 @@ class App extends React.Component<AppProps> {
             )}
           />
           <Route
-            path="/console"
+            path="/"
+            exact
             render={props => (
               <DevConsole
                 token={this.props.auth.token}
