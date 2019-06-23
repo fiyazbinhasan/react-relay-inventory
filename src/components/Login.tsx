@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { LoginModel, AuthState } from '../store/auth/types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,6 +14,7 @@ import { Theme, createStyles } from '@material-ui/core';
 import { Link, Redirect } from 'react-router-dom';
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+import { LoginModel, AuthState } from '../store/auth/types';
 
 const styles = (theme: Theme) =>
   createStyles({

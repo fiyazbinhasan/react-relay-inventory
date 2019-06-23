@@ -12,7 +12,7 @@ import { loginUser } from '../thunks/loginUser';
 import { AuthState } from '../store/auth/types';
 import { RegisterInterface } from './Register';
 import { LoginInterface } from './Login';
-import DevConsole from './Console';
+import { DevConsole } from './Console';
 
 interface AppProps {
   registerUser: any;
