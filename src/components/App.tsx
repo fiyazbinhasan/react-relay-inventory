@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { AppState } from '../store';
 
 import React from 'react';
-import { Action, Dispatch } from 'redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
@@ -10,11 +9,10 @@ import './App.css';
 import { registerUser } from '../thunks/registerUser';
 import { loginUser } from '../thunks/loginUser';
 
-import { AuthState, RegisterModel, LoginModel } from '../store/auth/types';
+import { AuthState } from '../store/auth/types';
 import { RegisterInterface } from './Register';
 import { LoginInterface } from './Login';
 import DevConsole from './Console';
-import { ThunkAction } from 'redux-thunk';
 
 interface AppProps {
   registerUser: any;
@@ -52,7 +50,7 @@ class App extends React.Component<AppProps> {
           <Route
             path="/"
             exact
-            render={props => (
+            render={() => (
               <DevConsole
                 token={this.props.auth.token}
                 error={this.props.auth.error}

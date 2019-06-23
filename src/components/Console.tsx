@@ -4,10 +4,9 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { Theme, createStyles } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 
-import { QueryRenderer, createFragmentContainer } from 'react-relay';
+import { QueryRenderer } from 'react-relay';
 import environment from '../utility/relayEnvironment';
 import ItemList from './ItemList';
-import CustomerList from './CustomerList';
 const graphql = require('babel-plugin-relay/macro');
 
 interface Props {
@@ -53,16 +52,14 @@ const DevConsole = withStyles(styles)(
               return <div>Loading...</div>;
             }
             return (
-              // <div>
-              //   <p>Token: {this.props.token}</p>
-              //   <p>Error: {this.props.error}</p>
-              //   <ItemList store={props.store} />
-              //   <CustomerList store={props.store} />
-              // </div>
               <Container className={classes.cardGrid} maxWidth="md">
                 <Grid container spacing={4}>
                   <ItemList store={props.store} />
                 </Grid>
+                <div>
+                  <p>Token: {this.props.token}</p>
+                  <p>Error: {this.props.error}</p>
+                </div>
               </Container>
             );
           }}
