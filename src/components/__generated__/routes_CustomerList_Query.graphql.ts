@@ -2,21 +2,21 @@
 
 import { ConcreteRequest } from "relay-runtime";
 type CustomerList_store$ref = any;
-export type routes_CustomerList_QueryVariables = {};
-export type routes_CustomerList_QueryResponse = {
+export type Routes_CustomerList_QueryVariables = {};
+export type Routes_CustomerList_QueryResponse = {
     readonly store: ({
         readonly " $fragmentRefs": CustomerList_store$ref;
     }) | null;
 };
-export type routes_CustomerList_Query = {
-    readonly response: routes_CustomerList_QueryResponse;
-    readonly variables: routes_CustomerList_QueryVariables;
+export type Routes_CustomerList_Query = {
+    readonly response: Routes_CustomerList_QueryResponse;
+    readonly variables: Routes_CustomerList_QueryVariables;
 };
 
 
 
 /*
-query routes_CustomerList_Query {
+query Routes_CustomerList_Query {
   store {
     ...CustomerList_store
     id
@@ -130,7 +130,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "routes_CustomerList_Query",
+    "name": "Routes_CustomerList_Query",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": [],
@@ -155,7 +155,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "routes_CustomerList_Query",
+    "name": "Routes_CustomerList_Query",
     "argumentDefinitions": [],
     "selections": [
       {
@@ -301,12 +301,12 @@ return {
   },
   "params": {
     "operationKind": "query",
-    "name": "routes_CustomerList_Query",
+    "name": "Routes_CustomerList_Query",
     "id": null,
-    "text": "query routes_CustomerList_Query {\n  store {\n    ...CustomerList_store\n    id\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 3) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n",
+    "text": "query Routes_CustomerList_Query {\n  store {\n    ...CustomerList_store\n    id\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 3) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '7cb6db8aaed1d66890d65eff22aadfae';
+(node as any).hash = '918de198848d9c984913f34607438462';
 export default node;

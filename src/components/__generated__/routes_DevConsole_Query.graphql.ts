@@ -3,23 +3,23 @@
 import { ConcreteRequest } from "relay-runtime";
 type CustomerList_store$ref = any;
 type ItemList_store$ref = any;
-export type routes_DevConsole_QueryVariables = {};
-export type routes_DevConsole_QueryResponse = {
+export type Routes_DevConsole_QueryVariables = {};
+export type Routes_DevConsole_QueryResponse = {
     readonly store: ({
         readonly id: string;
         readonly totalCount: number | null;
         readonly " $fragmentRefs": ItemList_store$ref & CustomerList_store$ref;
     }) | null;
 };
-export type routes_DevConsole_Query = {
-    readonly response: routes_DevConsole_QueryResponse;
-    readonly variables: routes_DevConsole_QueryVariables;
+export type Routes_DevConsole_Query = {
+    readonly response: Routes_DevConsole_QueryResponse;
+    readonly variables: Routes_DevConsole_QueryVariables;
 };
 
 
 
 /*
-query routes_DevConsole_Query {
+query Routes_DevConsole_Query {
   store {
     id
     totalCount
@@ -154,7 +154,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "routes_DevConsole_Query",
+    "name": "Routes_DevConsole_Query",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": [],
@@ -186,7 +186,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "routes_DevConsole_Query",
+    "name": "Routes_DevConsole_Query",
     "argumentDefinitions": [],
     "selections": [
       {
@@ -352,12 +352,12 @@ return {
   },
   "params": {
     "operationKind": "query",
-    "name": "routes_DevConsole_Query",
+    "name": "Routes_DevConsole_Query",
     "id": null,
-    "text": "query routes_DevConsole_Query {\n  store {\n    id\n    totalCount\n    ...ItemList_store\n    ...CustomerList_store\n  }\n}\n\nfragment ItemList_store on Store {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 3) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
+    "text": "query Routes_DevConsole_Query {\n  store {\n    id\n    totalCount\n    ...ItemList_store\n    ...CustomerList_store\n  }\n}\n\nfragment ItemList_store on Store {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 3) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'ed1293ddf0eb9797a2185da0d65d2e81';
+(node as any).hash = '81c0e51eea4bcb6520822b20fccafa87';
 export default node;

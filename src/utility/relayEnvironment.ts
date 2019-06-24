@@ -8,7 +8,7 @@ import {
 } from 'relay-runtime';
 import createFarceRouter from 'found/lib/createFarceRouter';
 import createRender from 'found/lib/createRender';
-import routes from '../components/routes';
+import routes from '../components/Routes';
 import { loadToken } from './localStorage';
 const { HashProtocol, queryMiddleware } = require('farce');
 

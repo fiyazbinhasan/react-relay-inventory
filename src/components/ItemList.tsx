@@ -15,7 +15,7 @@ class ItemList extends React.Component<Props> {
     }
     return this.props.store.items.map(item => {
       if (!item) throw new Error('assertion failed');
-      return <Item key={item.id} item={item} />;
+      return <p>Hello</p>;
     });
   }
   render() {

@@ -5,6 +5,8 @@ import configureStore from './store';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import { environment, Router } from './utility/relayEnvironment';
+const { Resolver } = require('found-relay');
 
 serviceWorker.unregister();
 
@@ -16,4 +18,7 @@ const Root = () => (
   </Provider>
 );
 
-render(<Root />, document.getElementById('root'));
+render(
+  <Router resolver={new Resolver(environment)} />,
+  document.getElementById('root')
+);
