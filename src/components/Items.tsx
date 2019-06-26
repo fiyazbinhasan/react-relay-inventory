@@ -1,16 +1,26 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
 import { createFragmentContainer } from 'react-relay';
 
 import Item from './Item';
-import { ItemList_store } from './__generated__/ItemList_store.graphql';
+import { Items_store } from './__generated__/Items_store.graphql';
 const graphql = require('babel-plugin-relay/macro');
 
+const useStyles = makeStyles(theme => ({
+  itemContainer: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8)
+  }
+}));
+
 interface Props {
-  store: ItemList_store;
+  store: Items_store;
 }
 
-export const ItemList: React.SFC<Props> = (props) => {
+export const Items: React.SFC<Props> = props => {
+  const classes = useStyles();
   function renderItems() {
     if (!props.store.items) {
       throw new Error('assertion failed');
@@ -26,13 +36,17 @@ export const ItemList: React.SFC<Props> = (props) => {
   }
 
   return (
-    <Grid container spacing={4}>{renderItems()}</Grid>
-  )
-}
+    <Container className={classes.itemContainer} maxWidth="md">
+      <Grid container spacing={4}>
+        {renderItems()}
+      </Grid>
+    </Container>
+  );
+};
 
-export default createFragmentContainer(ItemList, {
+export default createFragmentContainer(Items, {
   store: graphql`
-    fragment ItemList_store on Store {
+    fragment Items_store on Store {
       items {
         id
         ...Item_item

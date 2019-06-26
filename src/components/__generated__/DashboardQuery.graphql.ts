@@ -2,33 +2,33 @@
 
 import { ConcreteRequest } from "relay-runtime";
 type CustomerList_store$ref = any;
-type ItemList_store$ref = any;
-export type ConsoleQueryVariables = {};
-export type ConsoleQueryResponse = {
+type Items_store$ref = any;
+export type DashboardQueryVariables = {};
+export type DashboardQueryResponse = {
     readonly store: ({
         readonly id: string;
         readonly totalCount: number | null;
-        readonly " $fragmentRefs": ItemList_store$ref & CustomerList_store$ref;
+        readonly " $fragmentRefs": Items_store$ref & CustomerList_store$ref;
     }) | null;
 };
-export type ConsoleQuery = {
-    readonly response: ConsoleQueryResponse;
-    readonly variables: ConsoleQueryVariables;
+export type DashboardQuery = {
+    readonly response: DashboardQueryResponse;
+    readonly variables: DashboardQueryVariables;
 };
 
 
 
 /*
-query ConsoleQuery {
+query DashboardQuery {
   store {
     id
     totalCount
-    ...ItemList_store
+    ...Items_store
     ...CustomerList_store
   }
 }
 
-fragment ItemList_store on Store {
+fragment Items_store on Store {
   items {
     id
     ...Item_item
@@ -154,7 +154,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "ConsoleQuery",
+    "name": "DashboardQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": [],
@@ -172,7 +172,7 @@ return {
           (v1/*: any*/),
           {
             "kind": "FragmentSpread",
-            "name": "ItemList_store",
+            "name": "Items_store",
             "args": null
           },
           {
@@ -186,7 +186,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "ConsoleQuery",
+    "name": "DashboardQuery",
     "argumentDefinitions": [],
     "selections": [
       {
@@ -352,12 +352,12 @@ return {
   },
   "params": {
     "operationKind": "query",
-    "name": "ConsoleQuery",
+    "name": "DashboardQuery",
     "id": null,
-    "text": "query ConsoleQuery {\n  store {\n    id\n    totalCount\n    ...ItemList_store\n    ...CustomerList_store\n  }\n}\n\nfragment ItemList_store on Store {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 3) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
+    "text": "query DashboardQuery {\n  store {\n    id\n    totalCount\n    ...Items_store\n    ...CustomerList_store\n  }\n}\n\nfragment Items_store on Store {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 3) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '095bb4af90466ea93d285c7644bb3f88';
+(node as any).hash = '9041e6c58936ccf21137e200560dfaa2';
 export default node;

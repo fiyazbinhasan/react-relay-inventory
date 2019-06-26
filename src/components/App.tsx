@@ -8,11 +8,12 @@ import './App.css';
 
 import { registerUser } from '../thunks/registerUser';
 import { loginUser } from '../thunks/loginUser';
-
 import { AuthState } from '../store/auth/types';
-import { RegisterInterface } from './Register';
-import { LoginInterface } from './Login';
-import { DevConsole } from './Console';
+
+import Register from './Register';
+import Login from './Login';
+import Dashboard from './Dashboard';
+import Inspector from './Inspector';
 
 interface AppProps {
   registerUser: any;
@@ -28,7 +29,7 @@ class App extends React.Component<AppProps> {
           <Route
             path="/register"
             render={props => (
-              <RegisterInterface
+              <Register
                 {...props}
                 isRegistered={this.props.auth.isRegistered}
                 registerUser={this.props.registerUser}
@@ -39,7 +40,7 @@ class App extends React.Component<AppProps> {
           <Route
             path="/login"
             render={props => (
-              <LoginInterface
+              <Login
                 {...props}
                 isLoggedIn={this.props.auth.isLoggedIn}
                 loginUser={this.props.loginUser}
@@ -47,11 +48,12 @@ class App extends React.Component<AppProps> {
               />
             )}
           />
+          <Route path="/" exact render={() => <Dashboard />} />
           <Route
-            path="/"
+            path="/inspector"
             exact
             render={() => (
-              <DevConsole
+              <Inspector
                 token={this.props.auth.token}
                 error={this.props.auth.error}
               />

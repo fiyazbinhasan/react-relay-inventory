@@ -9,8 +9,12 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import { Theme, createStyles } from '@material-ui/core';
+import {
+  createStyles,
+  Theme,
+  withStyles,
+  WithStyles
+} from '@material-ui/core/styles';
 import { Link, Redirect } from 'react-router-dom';
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
@@ -20,25 +24,25 @@ const styles = (theme: Theme) =>
   createStyles({
     '@global': {
       body: {
-        backgroundColor: theme.palette.common.white,
-      },
+        backgroundColor: theme.palette.common.white
+      }
     },
     paper: {
       marginTop: theme.spacing(8),
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
+      alignItems: 'center'
     },
     avatar: {
       margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: theme.palette.secondary.main
     },
     form: {
       width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(1)
     },
     submit: {
-      margin: theme.spacing(3, 0, 2),
+      margin: theme.spacing(3, 0, 2)
     }
   });
 
@@ -55,7 +59,7 @@ interface State {
   password: string;
 }
 
-export const LoginInterface = withStyles(styles)(
+const Login = withStyles(styles)(
   class extends React.Component<Props> {
     state: State = {
       userName: 'admin@graphqlcore.local',
@@ -84,7 +88,11 @@ export const LoginInterface = withStyles(styles)(
               <Typography component="h1" variant="h5">
                 Sign in
               </Typography>
-              <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
+              <form
+                className={classes.form}
+                noValidate
+                onSubmit={this.handleSubmit}
+              >
                 <TextField
                   variant="outlined"
                   margin="normal"
@@ -130,9 +138,7 @@ export const LoginInterface = withStyles(styles)(
                 </Button>
                 <Grid container>
                   <Grid item xs>
-                    <Link to="/register">
-                      Forgot password?
-                    </Link>
+                    <Link to="/register">Forgot password?</Link>
                   </Grid>
                   <Grid item>
                     <Link to="/register">
@@ -147,3 +153,5 @@ export const LoginInterface = withStyles(styles)(
     }
   }
 );
+
+export default Login;

@@ -9,37 +9,42 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import { Theme, createStyles } from '@material-ui/core';
+import {
+  createStyles,
+  Theme,
+  withStyles,
+  WithStyles
+} from '@material-ui/core/styles';
 import { RegisterModel, AuthState } from '../store/auth/types';
 import { Link, Redirect } from 'react-router-dom';
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
 
-const styles = (theme: Theme) => createStyles({
-  '@global': {
-    body: {
-      backgroundColor: theme.palette.common.white,
+const styles = (theme: Theme) =>
+  createStyles({
+    '@global': {
+      body: {
+        backgroundColor: theme.palette.common.white
+      }
     },
-  },
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2)
-  },
-});
+    paper: {
+      marginTop: theme.spacing(8),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main
+    },
+    form: {
+      width: '100%', // Fix IE 11 issue.
+      marginTop: theme.spacing(3)
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2)
+    }
+  });
 
 interface Props extends WithStyles<typeof styles> {
   registerUser: (
@@ -63,7 +68,7 @@ interface State {
   password: string;
 }
 
-export const RegisterInterface = withStyles(styles)(
+const Register = withStyles(styles)(
   class extends React.Component<Props, State> {
     state: State = {
       firstName: 'Fiyaz',
@@ -82,7 +87,6 @@ export const RegisterInterface = withStyles(styles)(
       const { classes, isRegistered } = this.props;
 
       if (isRegistered) return <Redirect to="/login" />;
-
       else
         return (
           <Container component="main" maxWidth="xs">
@@ -93,8 +97,12 @@ export const RegisterInterface = withStyles(styles)(
               </Avatar>
               <Typography component="h1" variant="h5">
                 Sign up
-            </Typography>
-              <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
+              </Typography>
+              <form
+                className={classes.form}
+                noValidate
+                onSubmit={this.handleSubmit}
+              >
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -160,7 +168,9 @@ export const RegisterInterface = withStyles(styles)(
                   </Grid>
                   <Grid item xs={12}>
                     <FormControlLabel
-                      control={<Checkbox value="allowExtraEmails" color="primary" />}
+                      control={
+                        <Checkbox value="allowExtraEmails" color="primary" />
+                      }
                       label="I want to receive inspiration, marketing promotions and updates via email."
                     />
                   </Grid>
@@ -173,12 +183,10 @@ export const RegisterInterface = withStyles(styles)(
                   className={classes.submit}
                 >
                   Sign Up
-              </Button>
+                </Button>
                 <Grid container justify="center">
                   <Grid item>
-                    <Link to="/login">
-                      Already have an account? Sign in
-                  </Link>
+                    <Link to="/login">Already have an account? Sign in</Link>
                   </Grid>
                 </Grid>
               </form>
@@ -188,3 +196,5 @@ export const RegisterInterface = withStyles(styles)(
     }
   }
 );
+
+export default Register;

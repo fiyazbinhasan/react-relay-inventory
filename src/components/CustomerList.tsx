@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  createRefetchContainer,
-  RelayRefetchProp,
-  FragmentVariablesGetter
-} from 'react-relay';
+import { createRefetchContainer, RelayRefetchProp } from 'react-relay';
 import Customer from './Customer';
 import createCustomer from '../mutations/createCustomer';
 import { CustomerList_store } from './__generated__/CustomerList_store.graphql';

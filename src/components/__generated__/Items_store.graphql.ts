@@ -2,20 +2,20 @@
 
 import { ReaderFragment } from "relay-runtime";
 type Item_item$ref = any;
-export type ItemList_store$ref = any;
-export type ItemList_store = {
+export type Items_store$ref = any;
+export type Items_store = {
     readonly items: ReadonlyArray<({
         readonly id: string;
         readonly " $fragmentRefs": Item_item$ref;
     }) | null> | null;
-    readonly " $refType": ItemList_store$ref;
+    readonly " $refType": Items_store$ref;
 };
 
 
 
 const node: ReaderFragment = {
   "kind": "Fragment",
-  "name": "ItemList_store",
+  "name": "Items_store",
   "type": "Store",
   "metadata": null,
   "argumentDefinitions": [],
@@ -45,5 +45,5 @@ const node: ReaderFragment = {
     }
   ]
 };
-(node as any).hash = '47b98ef546131da1fadbaec0e0abf1c0';
+(node as any).hash = '53bef31b33b58d7e7d8a607c3d321ea0';
 export default node;

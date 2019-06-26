@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { createFragmentContainer } from 'react-relay';
 import { Item_item } from './__generated__/Item_item.graphql';
+
 const graphql = require('babel-plugin-relay/macro');
 
 interface Props {
@@ -19,17 +20,17 @@ const useStyles = makeStyles(() => ({
   card: {
     height: '100%',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%' // 16:9
   },
   cardContent: {
-    flexGrow: 1,
-  },
+    flexGrow: 1
+  }
 }));
 
-export const Item: React.SFC<Props> = (props) => {
+export const Item: React.SFC<Props> = props => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
@@ -42,9 +43,7 @@ export const Item: React.SFC<Props> = (props) => {
         <Typography gutterBottom variant="h5" component="h2">
           {props.item.title}
         </Typography>
-        <Typography>
-          ${props.item.sellingPrice}
-        </Typography>
+        <Typography>${props.item.sellingPrice}</Typography>
       </CardContent>
       <CardActions>
         <Button size="small" color="primary">
@@ -55,8 +54,8 @@ export const Item: React.SFC<Props> = (props) => {
         </Button>
       </CardActions>
     </Card>
-  )
-}
+  );
+};
 
 export default createFragmentContainer(Item, {
   item: graphql`
