@@ -3,11 +3,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { QueryRenderer } from 'react-relay';
 
-import Items from './Items';
+import TopBar from './TopBar';
 import HeroContent from './HeroContent';
+import Items from './Items';
 
 import environment from '../utility/relayEnvironment';
-import ApplicationBar from './ApplicationBar';
+import Inspector from './Inspector';
 const graphql = require('babel-plugin-relay/macro');
 
 const query = graphql`
@@ -21,7 +22,7 @@ const query = graphql`
   }
 `;
 
-const Dashboard: React.FunctionComponent = componentProps => {
+const Dashboard: React.FunctionComponent = () => {
   return (
     <QueryRenderer
       environment={environment}
@@ -37,13 +38,14 @@ const Dashboard: React.FunctionComponent = componentProps => {
         return (
           <React.Fragment>
             <CssBaseline />
-            <ApplicationBar title="Programmers Paradise" cartItemCount={5} />
+            <TopBar />
             <main>
               <HeroContent
                 slogan="Big Sale!"
                 description="Black friday is not so far away."
               />
               <Items store={props.store} />
+              <Inspector/>
             </main>
           </React.Fragment>
         );

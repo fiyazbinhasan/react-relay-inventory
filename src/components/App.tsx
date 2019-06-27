@@ -49,16 +49,6 @@ class App extends React.Component<AppProps> {
             )}
           />
           <Route path="/" exact render={() => <Dashboard />} />
-          <Route
-            path="/inspector"
-            exact
-            render={() => (
-              <Inspector
-                token={this.props.auth.token}
-                error={this.props.auth.error}
-              />
-            )}
-          />
         </div>
       </Router>
     );

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import { AppState } from '../store';
+import { connect } from 'react-redux';
 
 interface Props {
   token: string;
@@ -20,4 +22,13 @@ const Inspector: React.SFC<Props> = props => {
   );
 };
 
-export default Inspector;
+const mapStateToProps = (state: AppState) => ({
+  token: state.auth.token,
+  error: state.auth.error
+});
+
+export default connect(
+  mapStateToProps
+)(Inspector);
+
+

@@ -3,8 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
-import green from '@material-ui/core/colors/green';
+import yellow from '@material-ui/core/colors/yellow';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
@@ -13,9 +12,11 @@ serviceWorker.unregister();
 
 const theme = createMuiTheme({
   palette: {
-    primary: blue,
-    secondary: green,
-  }
+    primary: {
+      main: '#ab47bc',
+    },
+    secondary: yellow,
+  },
 });
 
 const store = configureStore();
