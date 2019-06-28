@@ -3,9 +3,11 @@ import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { authReducer } from './auth/reducers';
+import { cartReducer } from './cart/reducers';
 
 const rootReducer = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  cart: cartReducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
