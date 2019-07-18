@@ -3,7 +3,6 @@
 import { ConcreteRequest } from "relay-runtime";
 export type CreateCustomerInput = {
     readonly clientMutationId?: string | null;
-    readonly name: string;
     readonly billingAddress: string;
 };
 export type createCustomerMutationVariables = {

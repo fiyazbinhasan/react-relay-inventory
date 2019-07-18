@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
+import GridList from '@material-ui/core/GridList';
 import { makeStyles } from '@material-ui/core/styles';
 import { createFragmentContainer } from 'react-relay';
 
@@ -10,6 +10,10 @@ const graphql = require('babel-plugin-relay/macro');
 
 const useStyles = makeStyles(theme => ({
   itemContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8)
   }
@@ -27,19 +31,15 @@ export const Items: React.SFC<Props> = props => {
     }
     return props.store.items.map(item => {
       if (!item) throw new Error('assertion failed');
-      return (
-        <Grid key={item.id} item xs={12} sm={6} md={4}>
-          <Item item={item} />
-        </Grid>
-      );
+      return <Item key={item.id} item={item} />;
     });
   }
 
   return (
     <Container className={classes.itemContainer} maxWidth="md">
-      <Grid container spacing={4}>
+      <GridList cellHeight={300} cols={4} spacing={8}>
         {renderItems()}
-      </Grid>
+      </GridList>
     </Container>
   );
 };

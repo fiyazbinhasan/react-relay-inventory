@@ -13,10 +13,10 @@ serviceWorker.unregister();
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#ab47bc',
+      main: '#ab47bc'
     },
-    secondary: yellow,
-  },
+    secondary: yellow
+  }
 });
 
 const store = configureStore();
