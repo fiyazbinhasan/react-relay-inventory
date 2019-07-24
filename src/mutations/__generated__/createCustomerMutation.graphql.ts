@@ -9,30 +9,30 @@ export type createCustomerMutationVariables = {
     readonly input: CreateCustomerInput;
 };
 export type createCustomerMutationResponse = {
-    readonly createCustomer: ({
+    readonly createCustomer: {
         readonly clientMutationId: string | null;
-        readonly customerEdge: ({
+        readonly customerEdge: {
             readonly cursor: string;
             readonly __typename: string;
-            readonly node: ({
+            readonly node: {
                 readonly id: string;
                 readonly billingAddress: string;
                 readonly name: string;
-                readonly orders: ({
-                    readonly edges: ReadonlyArray<({
-                        readonly node: ({
+                readonly orders: {
+                    readonly edges: ReadonlyArray<{
+                        readonly node: {
                             readonly tag: string;
                             readonly createdAt: any;
-                        }) | null;
-                    }) | null> | null;
-                }) | null;
-            }) | null;
-        }) | null;
-        readonly store: ({
+                        } | null;
+                    } | null> | null;
+                } | null;
+            } | null;
+        } | null;
+        readonly store: {
             readonly id: string;
             readonly totalCount: number | null;
-        }) | null;
-    }) | null;
+        } | null;
+    } | null;
 };
 export type createCustomerMutation = {
     readonly response: createCustomerMutationResponse;

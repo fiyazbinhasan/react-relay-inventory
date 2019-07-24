@@ -6,9 +6,9 @@ export type CustomerListRefetchQueryVariables = {
     readonly limit?: number | null;
 };
 export type CustomerListRefetchQueryResponse = {
-    readonly store: ({
+    readonly store: {
         readonly " $fragmentRefs": CustomerList_store$ref;
-    }) | null;
+    } | null;
 };
 export type CustomerListRefetchQuery = {
     readonly response: CustomerListRefetchQueryResponse;

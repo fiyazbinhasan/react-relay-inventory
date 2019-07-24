@@ -4,14 +4,14 @@ import { ReaderFragment } from "relay-runtime";
 type Customer_customer$ref = any;
 export type CustomerList_store$ref = any;
 export type CustomerList_store = {
-    readonly customers: ({
-        readonly edges: ReadonlyArray<({
-            readonly node: ({
+    readonly customers: {
+        readonly edges: ReadonlyArray<{
+            readonly node: {
                 readonly id: string;
                 readonly " $fragmentRefs": Customer_customer$ref;
-            }) | null;
-        }) | null> | null;
-    }) | null;
+            } | null;
+        } | null> | null;
+    } | null;
     readonly id: string;
     readonly totalCount: number | null;
     readonly " $refType": CustomerList_store$ref;

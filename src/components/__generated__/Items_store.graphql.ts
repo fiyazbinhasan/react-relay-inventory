@@ -4,10 +4,10 @@ import { ReaderFragment } from "relay-runtime";
 type Item_item$ref = any;
 export type Items_store$ref = any;
 export type Items_store = {
-    readonly items: ReadonlyArray<({
+    readonly items: ReadonlyArray<{
         readonly id: string;
         readonly " $fragmentRefs": Item_item$ref;
-    }) | null> | null;
+    } | null> | null;
     readonly " $refType": Items_store$ref;
 };
 

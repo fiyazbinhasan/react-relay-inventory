@@ -5,11 +5,11 @@ type CustomerList_store$ref = any;
 type Items_store$ref = any;
 export type DashboardQueryVariables = {};
 export type DashboardQueryResponse = {
-    readonly store: ({
+    readonly store: {
         readonly id: string;
         readonly totalCount: number | null;
         readonly " $fragmentRefs": Items_store$ref & CustomerList_store$ref;
-    }) | null;
+    } | null;
 };
 export type DashboardQuery = {
     readonly response: DashboardQueryResponse;

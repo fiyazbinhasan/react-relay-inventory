@@ -4,12 +4,13 @@ import {
   RecordSource,
   Store,
   Variables,
-  RequestNode
+  ConcreteRequest,
+  RequestParameters
 } from 'relay-runtime';
 
 import { loadToken } from './localStorage';
 
-const fetchQuery = (operation: RequestNode, variables: Variables) => {
+const fetchQuery = (request: RequestParameters, variables: Variables) => {
   return fetch('http://localhost:5000/api/graphql', {
     method: 'POST',
     headers: {
@@ -17,7 +18,7 @@ const fetchQuery = (operation: RequestNode, variables: Variables) => {
       Authorization: `Bearer ${loadToken()}`
     },
     body: JSON.stringify({
-      query: operation.text,
+      query: request.text,
       variables
     })
   }).then(response => {

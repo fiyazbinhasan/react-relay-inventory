@@ -38,17 +38,14 @@ const mutation = graphql`
   }
 `;
 
-function sharedUpdater(
-  rssProxy: RecordSourceSelectorProxy,
-  store: CustomerList_store,
-  newEdge: RecordProxy | null
-) {
+function sharedUpdater(rssProxy: any, store: CustomerList_store, newEdge: any) {
   const storeProxy = rssProxy.get(store.id);
   const conn = ConnectionHandler.getConnection(
     storeProxy,
     'CustomerList_customers'
   );
-  ConnectionHandler.insertEdgeAfter(conn, newEdge);
+
+  if (conn) ConnectionHandler.insertEdgeAfter(conn, newEdge);
 }
 
 let tempID = 0;
@@ -68,17 +65,15 @@ function commit(
         clientMutationId: tempID++
       }
     },
-    updater: (rssProxy: RecordSourceSelectorProxy) => {
-      const payload: RecordProxy | null = rssProxy.getRootField(
-        'createCustomer'
-      );
+    updater: (rssProxy: any) => {
+      const payload = rssProxy.getRootField('createCustomer');
 
-      if (payload !== null) {
+      if (payload !== null && payload !== undefined) {
         const newEdge = payload.getLinkedRecord('customerEdge');
         sharedUpdater(rssProxy, store, newEdge);
       }
     },
-    optimisticUpdater: (rssProxy: RecordSourceSelectorProxy) => {
+    optimisticUpdater: (rssProxy: any) => {
       const id = 'client:newCustomer:' + tempID++;
       const node = rssProxy.create(id, 'Customer');
       node.setValue(name, 'name');
@@ -100,10 +95,10 @@ function commit(
           'totalCount'
         );
     },
-    onCompleted: (response, errors) => {
+    onCompleted: (response: any, errors: any) => {
       console.log('Response received from server.');
     },
-    onError: err => console.error(err)
+    onError: (err: any) => console.error(err)
   });
 }
 
