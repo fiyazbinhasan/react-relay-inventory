@@ -28,7 +28,7 @@ export const Items: React.SFC<Props> = props => {
     return props.store.items.map(item => {
       if (!item) throw new Error('assertion failed');
       return (
-        <Grid key={item.id} item xs={12} sm={6} md={3}>
+        <Grid key={item.id} item xs={6} sm={4} md={3}>
           <Item item={item} />
         </Grid>
       );

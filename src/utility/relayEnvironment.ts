@@ -4,7 +4,6 @@ import {
   RecordSource,
   Store,
   Variables,
-  ConcreteRequest,
   RequestParameters
 } from 'relay-runtime';
 

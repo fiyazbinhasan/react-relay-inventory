@@ -38,16 +38,6 @@ const mutation = graphql`
   }
 `;
 
-function sharedUpdater(rssProxy: any, store: CustomerList_store, newEdge: any) {
-  const storeProxy = rssProxy.get(store.id);
-  const conn = ConnectionHandler.getConnection(
-    storeProxy,
-    'CustomerList_customers'
-  );
-
-  if (conn) ConnectionHandler.insertEdgeAfter(conn, newEdge);
-}
-
 let tempID = 0;
 
 function commit(
@@ -65,37 +55,20 @@ function commit(
         clientMutationId: tempID++
       }
     },
-    updater: (rssProxy: any) => {
-      const payload = rssProxy.getRootField('createCustomer');
-
-      if (payload !== null && payload !== undefined) {
-        const newEdge = payload.getLinkedRecord('customerEdge');
-        sharedUpdater(rssProxy, store, newEdge);
+    configs: [
+      {
+        type: 'RANGE_ADD',
+        parentID: store.id,
+        connectionInfo: [
+          {
+            key: 'CustomerList_customers',
+            rangeBehavior: 'append'
+          }
+        ],
+        edgeName: 'customerEdge'
       }
-    },
-    optimisticUpdater: (rssProxy: any) => {
-      const id = 'client:newCustomer:' + tempID++;
-      const node = rssProxy.create(id, 'Customer');
-      node.setValue(name, 'name');
-      node.setValue(billingAddress, 'billingAddress');
-      node.setValue(id, 'id');
-
-      const newEdge = rssProxy.create(
-        'client:newEdge:' + tempID++,
-        'CustomerEdge'
-      );
-
-      newEdge.setLinkedRecord(node, 'node');
-      sharedUpdater(rssProxy, store, newEdge);
-
-      const storeProxy = rssProxy.get(store.id);
-      if (storeProxy)
-        storeProxy.setValue(
-          storeProxy.getValue('totalCount') + 1,
-          'totalCount'
-        );
-    },
-    onCompleted: (response: any, errors: any) => {
+    ],
+    onCompleted: () => {
       console.log('Response received from server.');
     },
     onError: (err: any) => console.error(err)

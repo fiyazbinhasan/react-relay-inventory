@@ -1,21 +1,10 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Rating from '@material-ui/lab/Rating';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import { createFragmentContainer } from 'react-relay';
 import { Item_item } from './__generated__/Item_item.graphql';
@@ -37,17 +26,22 @@ interface Props {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    card: {
-      maxWidth: 345
+    textEllipsis: {
+      display: '-webkit-box',
+      lineClamp: 2,
+      boxOrient: 'vertical',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
     },
     media: {
-      height: 275
-    },
-    pullRight: {
-      marginLeft: 'auto'
-    },
-    avatar: {
-      backgroundColor: red[500]
+      height: 256,
+      display: 'block',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      boxShadow:
+        '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0)',
+      borderRadius: '4px'
     }
   })
 );
@@ -56,15 +50,14 @@ export const Item: React.SFC<Props> = props => {
   const classes = useStyles();
   return (
     <div>
-      <Card>
-        <CardMedia
-          className={classes.media}
-          image="http://lorempixel.com/400/400/"
-          title="Paella dish"
-        />
-      </Card>
+      <div
+        className={classes.media}
+        style={{ backgroundImage: "url('http://lorempixel.com/256/256/')" }}
+      />
       <div>
-        <p>Timex Unisex Southview 41mm Leather Strap Watch</p>
+        <p className={classes.textEllipsis}>
+          Timex Unisex Southview 41mm Premium Quality Leather Strap Watch
+        </p>
         <Rating value={4} />
       </div>
     </div>
