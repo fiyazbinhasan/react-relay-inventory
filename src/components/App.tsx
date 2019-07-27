@@ -13,6 +13,7 @@ import { AuthState } from '../store/auth/types';
 import Register from './Register';
 import Login from './Login';
 import Dashboard from './Dashboard';
+import CustomerList from './CustomerList';
 
 interface AppProps {
   registerUser: any;

@@ -72,7 +72,7 @@ export default createRefetchContainer(
     store: graphql`
       fragment CustomerList_store on Store
         @argumentDefinitions(
-          limit: { type: "Int", defaultValue: 3 } # Optional argument
+          limit: { type: "Int", defaultValue: 10 } # Optional argument
         ) {
         customers(first: $limit) @connection(key: "CustomerList_customers") {
           edges {

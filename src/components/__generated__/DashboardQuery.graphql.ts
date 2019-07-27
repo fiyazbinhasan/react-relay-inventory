@@ -36,7 +36,7 @@ fragment Items_store on Store {
 }
 
 fragment CustomerList_store on Store {
-  customers(first: 3) {
+  customers(first: 10) {
     edges {
       node {
         id
@@ -107,25 +107,33 @@ v2 = [
   {
     "kind": "Literal",
     "name": "first",
+    "value": 10,
+    "type": "Int"
+  }
+],
+v3 = [
+  {
+    "kind": "Literal",
+    "name": "first",
     "value": 3,
     "type": "Int"
   }
 ],
-v3 = {
+v4 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "__typename",
   "args": null,
   "storageKey": null
 },
-v4 = {
+v5 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "cursor",
   "args": null,
   "storageKey": null
 },
-v5 = {
+v6 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "pageInfo",
@@ -230,7 +238,7 @@ return {
             "kind": "LinkedField",
             "alias": null,
             "name": "customers",
-            "storageKey": "customers(first:3)",
+            "storageKey": "customers(first:10)",
             "args": (v2/*: any*/),
             "concreteType": "CustomerConnection",
             "plural": false,
@@ -273,7 +281,7 @@ return {
                         "alias": null,
                         "name": "orders",
                         "storageKey": "orders(first:3)",
-                        "args": (v2/*: any*/),
+                        "args": (v3/*: any*/),
                         "concreteType": "OrderConnection",
                         "plural": false,
                         "selections": [
@@ -310,31 +318,31 @@ return {
                                     "args": null,
                                     "storageKey": null
                                   },
-                                  (v3/*: any*/)
+                                  (v4/*: any*/)
                                 ]
                               },
-                              (v4/*: any*/)
+                              (v5/*: any*/)
                             ]
                           },
-                          (v5/*: any*/)
+                          (v6/*: any*/)
                         ]
                       },
                       {
                         "kind": "LinkedHandle",
                         "alias": null,
                         "name": "orders",
-                        "args": (v2/*: any*/),
+                        "args": (v3/*: any*/),
                         "handle": "connection",
                         "key": "OrderList_orders",
                         "filters": null
                       },
-                      (v3/*: any*/)
+                      (v4/*: any*/)
                     ]
                   },
-                  (v4/*: any*/)
+                  (v5/*: any*/)
                 ]
               },
-              (v5/*: any*/)
+              (v6/*: any*/)
             ]
           },
           {
@@ -354,7 +362,7 @@ return {
     "operationKind": "query",
     "name": "DashboardQuery",
     "id": null,
-    "text": "query DashboardQuery {\n  store {\n    id\n    totalCount\n    ...Items_store\n    ...CustomerList_store\n  }\n}\n\nfragment Items_store on Store {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 3) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
+    "text": "query DashboardQuery {\n  store {\n    id\n    totalCount\n    ...Items_store\n    ...CustomerList_store\n  }\n}\n\nfragment Items_store on Store {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 10) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
     "metadata": {}
   }
 };

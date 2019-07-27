@@ -1,10 +1,5 @@
 import { commitMutation } from 'react-relay';
-import {
-  Environment,
-  RecordSourceSelectorProxy,
-  ConnectionHandler,
-  RecordProxy
-} from 'relay-runtime';
+import { Environment } from 'relay-runtime';
 import { CustomerList_store } from '../components/__generated__/CustomerList_store.graphql';
 
 const graphql = require('babel-plugin-relay/macro');
