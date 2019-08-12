@@ -1,13 +1,13 @@
 /* tslint:disable */
 
 import { ConcreteRequest } from "relay-runtime";
-type CustomerList_store$ref = any;
+type CustomerList_viewer$ref = any;
 export type CustomerListRefetchQueryVariables = {
     readonly limit?: number | null;
 };
 export type CustomerListRefetchQueryResponse = {
-    readonly store: {
-        readonly " $fragmentRefs": CustomerList_store$ref;
+    readonly viewer: {
+        readonly " $fragmentRefs": CustomerList_viewer$ref;
     } | null;
 };
 export type CustomerListRefetchQuery = {
@@ -21,13 +21,13 @@ export type CustomerListRefetchQuery = {
 query CustomerListRefetchQuery(
   $limit: Int
 ) {
-  store {
-    ...CustomerList_store_1UvIyz
+  viewer {
+    ...CustomerList_viewer_1UvIyz
     id
   }
 }
 
-fragment CustomerList_store_1UvIyz on Store {
+fragment CustomerList_viewer_1UvIyz on Viewer {
   customers(first: $limit) {
     edges {
       node {
@@ -158,15 +158,15 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "store",
+        "name": "viewer",
         "storageKey": null,
         "args": null,
-        "concreteType": "Store",
+        "concreteType": "Viewer",
         "plural": false,
         "selections": [
           {
             "kind": "FragmentSpread",
-            "name": "CustomerList_store",
+            "name": "CustomerList_viewer",
             "args": [
               {
                 "kind": "Variable",
@@ -188,10 +188,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "store",
+        "name": "viewer",
         "storageKey": null,
         "args": null,
-        "concreteType": "Store",
+        "concreteType": "Viewer",
         "plural": false,
         "selections": [
           {
@@ -330,10 +330,10 @@ return {
     "operationKind": "query",
     "name": "CustomerListRefetchQuery",
     "id": null,
-    "text": "query CustomerListRefetchQuery(\n  $limit: Int\n) {\n  store {\n    ...CustomerList_store_1UvIyz\n    id\n  }\n}\n\nfragment CustomerList_store_1UvIyz on Store {\n  customers(first: $limit) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n",
+    "text": "query CustomerListRefetchQuery(\n  $limit: Int\n) {\n  viewer {\n    ...CustomerList_viewer_1UvIyz\n    id\n  }\n}\n\nfragment CustomerList_viewer_1UvIyz on Viewer {\n  customers(first: $limit) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'c009eb792710553093b61ac8a99bd6fa';
+(node as any).hash = '73019e09d3640dfa736d2cb0a2b694d5';
 export default node;

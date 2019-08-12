@@ -1,14 +1,14 @@
 /* tslint:disable */
 
 import { ConcreteRequest } from "relay-runtime";
-type CustomerList_store$ref = any;
-type Items_store$ref = any;
+type CustomerList_viewer$ref = any;
+type Items_viewer$ref = any;
 export type DashboardQueryVariables = {};
 export type DashboardQueryResponse = {
-    readonly store: {
+    readonly viewer: {
         readonly id: string;
         readonly totalCount: number | null;
-        readonly " $fragmentRefs": Items_store$ref & CustomerList_store$ref;
+        readonly " $fragmentRefs": Items_viewer$ref & CustomerList_viewer$ref;
     } | null;
 };
 export type DashboardQuery = {
@@ -20,22 +20,22 @@ export type DashboardQuery = {
 
 /*
 query DashboardQuery {
-  store {
+  viewer {
     id
     totalCount
-    ...Items_store
-    ...CustomerList_store
+    ...Items_viewer
+    ...CustomerList_viewer
   }
 }
 
-fragment Items_store on Store {
+fragment Items_viewer on Viewer {
   items {
     id
     ...Item_item
   }
 }
 
-fragment CustomerList_store on Store {
+fragment CustomerList_viewer on Viewer {
   customers(first: 10) {
     edges {
       node {
@@ -170,22 +170,22 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "store",
+        "name": "viewer",
         "storageKey": null,
         "args": null,
-        "concreteType": "Store",
+        "concreteType": "Viewer",
         "plural": false,
         "selections": [
           (v0/*: any*/),
           (v1/*: any*/),
           {
             "kind": "FragmentSpread",
-            "name": "Items_store",
+            "name": "Items_viewer",
             "args": null
           },
           {
             "kind": "FragmentSpread",
-            "name": "CustomerList_store",
+            "name": "CustomerList_viewer",
             "args": null
           }
         ]
@@ -200,10 +200,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "store",
+        "name": "viewer",
         "storageKey": null,
         "args": null,
-        "concreteType": "Store",
+        "concreteType": "Viewer",
         "plural": false,
         "selections": [
           (v0/*: any*/),
@@ -362,10 +362,10 @@ return {
     "operationKind": "query",
     "name": "DashboardQuery",
     "id": null,
-    "text": "query DashboardQuery {\n  store {\n    id\n    totalCount\n    ...Items_store\n    ...CustomerList_store\n  }\n}\n\nfragment Items_store on Store {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_store on Store {\n  customers(first: 10) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
+    "text": "query DashboardQuery {\n  viewer {\n    id\n    totalCount\n    ...Items_viewer\n    ...CustomerList_viewer\n  }\n}\n\nfragment Items_viewer on Viewer {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_viewer on Viewer {\n  customers(first: 10) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '9041e6c58936ccf21137e200560dfaa2';
+(node as any).hash = '4f24ea39a2af8b1de6f1a646aa80ca39';
 export default node;

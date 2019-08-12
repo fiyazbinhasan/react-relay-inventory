@@ -28,7 +28,7 @@ export type createCustomerMutationResponse = {
                 } | null;
             } | null;
         } | null;
-        readonly store: {
+        readonly viewer: {
             readonly id: string;
             readonly totalCount: number | null;
         } | null;
@@ -65,7 +65,7 @@ mutation createCustomerMutation(
         }
       }
     }
-    store {
+    viewer {
       id
       totalCount
     }
@@ -149,10 +149,10 @@ v9 = {
 v10 = {
   "kind": "LinkedField",
   "alias": null,
-  "name": "store",
+  "name": "viewer",
   "storageKey": null,
   "args": null,
-  "concreteType": "Store",
+  "concreteType": "Viewer",
   "plural": false,
   "selections": [
     (v5/*: any*/),
@@ -338,10 +338,10 @@ return {
     "operationKind": "mutation",
     "name": "createCustomerMutation",
     "id": null,
-    "text": "mutation createCustomerMutation(\n  $input: CreateCustomerInput!\n) {\n  createCustomer(input: $input) {\n    clientMutationId\n    customerEdge {\n      cursor\n      __typename\n      node {\n        id\n        billingAddress\n        name\n        orders {\n          edges {\n            node {\n              tag\n              createdAt\n              id\n            }\n          }\n        }\n      }\n    }\n    store {\n      id\n      totalCount\n    }\n  }\n}\n",
+    "text": "mutation createCustomerMutation(\n  $input: CreateCustomerInput!\n) {\n  createCustomer(input: $input) {\n    clientMutationId\n    customerEdge {\n      cursor\n      __typename\n      node {\n        id\n        billingAddress\n        name\n        orders {\n          edges {\n            node {\n              tag\n              createdAt\n              id\n            }\n          }\n        }\n      }\n    }\n    viewer {\n      id\n      totalCount\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '864f8af029114eb7150ee576556484fc';
+(node as any).hash = 'bd24bac2116db75058d38df6b814945c';
 export default node;

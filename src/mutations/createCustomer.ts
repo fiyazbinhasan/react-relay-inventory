@@ -1,6 +1,6 @@
 import { commitMutation } from 'react-relay';
 import { Environment } from 'relay-runtime';
-import { CustomerList_store } from '../components/__generated__/CustomerList_store.graphql';
+import { CustomerList_viewer } from '../components/__generated__/CustomerList_viewer.graphql';
 
 const graphql = require('babel-plugin-relay/macro');
 
@@ -25,7 +25,7 @@ const mutation = graphql`
           }
         }
       }
-      store {
+      viewer {
         id
         totalCount
       }
@@ -37,7 +37,7 @@ let tempID = 0;
 
 function commit(
   environment: Environment,
-  store: CustomerList_store,
+  viewer: CustomerList_viewer,
   name: string,
   billingAddress: string
 ) {
@@ -53,7 +53,7 @@ function commit(
     configs: [
       {
         type: 'RANGE_ADD',
-        parentID: store.id,
+        parentID: viewer.id,
         connectionInfo: [
           {
             key: 'CustomerList_customers',

@@ -14,11 +14,11 @@ const graphql = require('babel-plugin-relay/macro');
 
 const query = graphql`
   query DashboardQuery {
-    store {
+    viewer {
       id
       totalCount
-      ...Items_store
-      ...CustomerList_store
+      ...Items_viewer
+      ...CustomerList_viewer
     }
   }
 `;
@@ -45,8 +45,8 @@ const Dashboard: React.FunctionComponent = () => {
                 slogan="Big Sale!"
                 description="Black friday is not so far away."
               />
-              <Items store={props.store} />
-              <CustomerList store={props.store} />
+              <Items viewer={props.viewer} />
+              {/* <CustomerList viewer={props.viewer} /> */}
               <Inspector />
             </main>
           </React.Fragment>

@@ -36,7 +36,7 @@ interface Props {
   description: string;
 }
 
-const HeroContent: React.SFC<Props> = props => {
+const HeroContent: React.FunctionComponent<Props> = props => {
   const classes = useStyles();
   return (
     <div className={classes.heroContent}>

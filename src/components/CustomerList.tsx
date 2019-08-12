@@ -2,11 +2,11 @@ import * as React from 'react';
 import { createRefetchContainer, RelayRefetchProp } from 'react-relay';
 import Customer from './Customer';
 import createCustomer from '../mutations/createCustomer';
-import { CustomerList_store } from './__generated__/CustomerList_store.graphql';
+import { CustomerList_viewer } from './__generated__/CustomerList_viewer.graphql';
 const graphql = require('babel-plugin-relay/macro');
 
 interface OwnProps {
-  store: CustomerList_store;
+  viewer: CustomerList_viewer;
 }
 
 interface RelayProps {
@@ -32,17 +32,17 @@ class CustomerList extends React.Component<Props> {
 
     createCustomer.commit(
       this.props.relay.environment,
-      this.props.store,
+      this.props.viewer,
       (this.refs.newName as HTMLInputElement).value,
       (this.refs.newBillingAddress as HTMLInputElement).value
     );
   };
 
   renderCustomers() {
-    if (!this.props.store.customers || !this.props.store.customers.edges) {
+    if (!this.props.viewer.customers || !this.props.viewer.customers.edges) {
       throw new Error('assertion failed');
     }
-    return this.props.store.customers.edges.map(edge => {
+    return this.props.viewer.customers.edges.map(edge => {
       const node = edge && edge.node;
       if (!node) throw new Error('assertion failed');
       return <Customer key={node.id} customer={node} />;
@@ -60,7 +60,7 @@ class CustomerList extends React.Component<Props> {
         <ul>{this.renderCustomers()}</ul>
         <button onClick={this.loadMore}>Load More</button>
 
-        <p>Total customers: {this.props.store.totalCount}</p>
+        <p>Total customers: {this.props.viewer.totalCount}</p>
       </div>
     );
   }
@@ -69,8 +69,8 @@ class CustomerList extends React.Component<Props> {
 export default createRefetchContainer(
   CustomerList,
   {
-    store: graphql`
-      fragment CustomerList_store on Store
+    viewer: graphql`
+      fragment CustomerList_viewer on Viewer
         @argumentDefinitions(
           limit: { type: "Int", defaultValue: 10 } # Optional argument
         ) {
@@ -89,8 +89,8 @@ export default createRefetchContainer(
   },
   graphql`
     query CustomerListRefetchQuery($limit: Int) {
-      store {
-        ...CustomerList_store @arguments(limit: $limit)
+      viewer {
+        ...CustomerList_viewer @arguments(limit: $limit)
       }
     }
   `

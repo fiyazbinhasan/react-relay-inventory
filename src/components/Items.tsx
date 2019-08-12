@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { createFragmentContainer } from 'react-relay';
 
 import Item from './Item';
-import { Items_store } from './__generated__/Items_store.graphql';
+import { Items_viewer } from './__generated__/Items_viewer.graphql';
 const graphql = require('babel-plugin-relay/macro');
 
 const useStyles = makeStyles(theme => ({
@@ -16,16 +16,16 @@ const useStyles = makeStyles(theme => ({
 }));
 
 interface Props {
-  store: Items_store;
+  viewer: Items_viewer;
 }
 
-export const Items: React.SFC<Props> = props => {
+export const Items: React.FunctionComponent<Props> = props => {
   const classes = useStyles();
   function renderItems() {
-    if (!props.store.items) {
+    if (!props.viewer.items) {
       throw new Error('assertion failed');
     }
-    return props.store.items.map(item => {
+    return props.viewer.items.map(item => {
       if (!item) throw new Error('assertion failed');
       return (
         <Grid key={item.id} item xs={6} sm={4} md={3}>
@@ -37,7 +37,7 @@ export const Items: React.SFC<Props> = props => {
 
   return (
     <Container className={classes.itemContainer} maxWidth="md">
-      <Grid container spacing={4}>
+      <Grid container spacing={2}>
         {renderItems()}
       </Grid>
     </Container>
@@ -45,8 +45,8 @@ export const Items: React.SFC<Props> = props => {
 };
 
 export default createFragmentContainer(Items, {
-  store: graphql`
-    fragment Items_store on Store {
+  viewer: graphql`
+    fragment Items_viewer on Viewer {
       items {
         id
         ...Item_item
