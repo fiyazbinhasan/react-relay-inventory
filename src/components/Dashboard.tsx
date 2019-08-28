@@ -10,6 +10,7 @@ import Items from './Items';
 import environment from '../utility/relayEnvironment';
 import Inspector from './Inspector';
 import CustomerList from './CustomerList';
+import Filter from './Filter';
 const graphql = require('babel-plugin-relay/macro');
 
 const query = graphql`
@@ -42,9 +43,10 @@ const Dashboard: React.FunctionComponent = () => {
             <TopBar />
             <main>
               <HeroContent
-                slogan="Big Sale!"
-                description="Black friday is not so far away."
+                slogan="Surfaces!"
+                description="Selling away refurbished surfaces"
               />
+              <Filter />
               <Items viewer={props.viewer} />
               {/* <CustomerList viewer={props.viewer} /> */}
               <Inspector />

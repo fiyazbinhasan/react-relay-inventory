@@ -31,14 +31,15 @@ const useStyles = makeStyles((theme: Theme) =>
       textOverflow: 'ellipsis'
     },
     media: {
-      height: 256,
+      height: 280,
       display: 'block',
-      backgroundSize: 'cover',
+      backgroundColor: '#ebe3cd30',
+      backgroundSize: 200,
       backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center',
-      boxShadow:
-        '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0)',
-      borderRadius: '4px'
+      backgroundPosition: 'center'
+      // boxShadow:
+      //   '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0)',
+      // borderRadius: '4px'
     }
   })
 );
@@ -49,12 +50,16 @@ export const Item: React.SFC<Props> = props => {
     <div>
       <div
         className={classes.media}
-        style={{ backgroundImage: "url('http://lorempixel.com/256/256/')" }}
+        style={{
+          backgroundImage:
+            'url("https://d3d71ba2asa5oz.cloudfront.net/12021547/images/b1544-grn-1.jpg")'
+        }}
       />
       <div>
-        <p className={classes.textEllipsis}>
-          Timex Unisex Southview 41mm Premium Quality Leather Strap Watch
-        </p>
+        <p className={classes.textEllipsis}>{props.item.title}</p>
+        {/* <p>
+          <i>${props.item.sellingPrice}</i>
+        </p> */}
         <Rating value={4} />
       </div>
     </div>

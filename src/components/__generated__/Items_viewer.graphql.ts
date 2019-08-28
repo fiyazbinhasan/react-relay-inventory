@@ -1,20 +1,19 @@
 /* tslint:disable */
 
 import { ReaderFragment } from "relay-runtime";
-type Customer_customer$ref = any;
-export type CustomerList_store$ref = any;
-export type CustomerList_store = {
-    readonly customers: {
+type Item_item$ref = any;
+export type Items_viewer$ref = any;
+export type Items_viewer = {
+    readonly items: {
         readonly edges: ReadonlyArray<{
             readonly node: {
                 readonly id: string;
-                readonly " $fragmentRefs": Customer_customer$ref;
+                readonly " $fragmentRefs": Item_item$ref;
             } | null;
         } | null> | null;
     } | null;
     readonly id: string;
-    readonly totalCount: number | null;
-    readonly " $refType": CustomerList_store$ref;
+    readonly " $refType": Items_viewer$ref;
 };
 
 
@@ -29,8 +28,8 @@ var v0 = {
 };
 return {
   "kind": "Fragment",
-  "name": "CustomerList_store",
-  "type": "Store",
+  "name": "Items_viewer",
+  "type": "Viewer",
   "metadata": {
     "connection": [
       {
@@ -38,7 +37,7 @@ return {
         "cursor": null,
         "direction": "forward",
         "path": [
-          "customers"
+          "items"
         ]
       }
     ]
@@ -48,17 +47,17 @@ return {
       "kind": "LocalArgument",
       "name": "limit",
       "type": "Int",
-      "defaultValue": 10
+      "defaultValue": 2
     }
   ],
   "selections": [
     {
       "kind": "LinkedField",
-      "alias": "customers",
-      "name": "__CustomerList_customers_connection",
+      "alias": "items",
+      "name": "__Items_items_connection",
       "storageKey": null,
       "args": null,
-      "concreteType": "CustomerConnection",
+      "concreteType": "ItemConnection",
       "plural": false,
       "selections": [
         {
@@ -67,7 +66,7 @@ return {
           "name": "edges",
           "storageKey": null,
           "args": null,
-          "concreteType": "CustomerEdge",
+          "concreteType": "ItemEdge",
           "plural": true,
           "selections": [
             {
@@ -76,13 +75,13 @@ return {
               "name": "node",
               "storageKey": null,
               "args": null,
-              "concreteType": "Customer",
+              "concreteType": "Item",
               "plural": false,
               "selections": [
                 (v0/*: any*/),
                 {
                   "kind": "FragmentSpread",
-                  "name": "Customer_customer",
+                  "name": "Item_item",
                   "args": null
                 },
                 {
@@ -130,16 +129,9 @@ return {
         }
       ]
     },
-    (v0/*: any*/),
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "totalCount",
-      "args": null,
-      "storageKey": null
-    }
+    (v0/*: any*/)
   ]
 };
 })();
-(node as any).hash = '03edcb837e66f3da8cae4cbc09481119';
+(node as any).hash = 'a191df2d50eae761e53d41f47a11753d';
 export default node;

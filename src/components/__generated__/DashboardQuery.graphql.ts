@@ -29,10 +29,21 @@ query DashboardQuery {
 }
 
 fragment Items_viewer on Viewer {
-  items {
-    id
-    ...Item_item
+  items(first: 2) {
+    edges {
+      node {
+        id
+        ...Item_item
+        __typename
+      }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
   }
+  id
 }
 
 fragment CustomerList_viewer on Viewer {
@@ -107,33 +118,25 @@ v2 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 10,
+    "value": 2,
     "type": "Int"
   }
 ],
-v3 = [
-  {
-    "kind": "Literal",
-    "name": "first",
-    "value": 3,
-    "type": "Int"
-  }
-],
-v4 = {
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "__typename",
   "args": null,
   "storageKey": null
 },
-v5 = {
+v4 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "cursor",
   "args": null,
   "storageKey": null
 },
-v6 = {
+v5 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "pageInfo",
@@ -157,7 +160,23 @@ v6 = {
       "storageKey": null
     }
   ]
-};
+},
+v6 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 10,
+    "type": "Int"
+  }
+],
+v7 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 3,
+    "type": "Int"
+  }
+];
 return {
   "kind": "Request",
   "fragment": {
@@ -212,34 +231,68 @@ return {
             "kind": "LinkedField",
             "alias": null,
             "name": "items",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Item",
-            "plural": true,
+            "storageKey": "items(first:2)",
+            "args": (v2/*: any*/),
+            "concreteType": "ItemConnection",
+            "plural": false,
             "selections": [
-              (v0/*: any*/),
               {
-                "kind": "ScalarField",
+                "kind": "LinkedField",
                 "alias": null,
-                "name": "title",
+                "name": "edges",
+                "storageKey": null,
                 "args": null,
-                "storageKey": null
+                "concreteType": "ItemEdge",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "node",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Item",
+                    "plural": false,
+                    "selections": [
+                      (v0/*: any*/),
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "title",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "sellingPrice",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      (v3/*: any*/)
+                    ]
+                  },
+                  (v4/*: any*/)
+                ]
               },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "sellingPrice",
-                "args": null,
-                "storageKey": null
-              }
+              (v5/*: any*/)
             ]
+          },
+          {
+            "kind": "LinkedHandle",
+            "alias": null,
+            "name": "items",
+            "args": (v2/*: any*/),
+            "handle": "connection",
+            "key": "Items_items",
+            "filters": null
           },
           {
             "kind": "LinkedField",
             "alias": null,
             "name": "customers",
             "storageKey": "customers(first:10)",
-            "args": (v2/*: any*/),
+            "args": (v6/*: any*/),
             "concreteType": "CustomerConnection",
             "plural": false,
             "selections": [
@@ -281,7 +334,7 @@ return {
                         "alias": null,
                         "name": "orders",
                         "storageKey": "orders(first:3)",
-                        "args": (v3/*: any*/),
+                        "args": (v7/*: any*/),
                         "concreteType": "OrderConnection",
                         "plural": false,
                         "selections": [
@@ -318,38 +371,38 @@ return {
                                     "args": null,
                                     "storageKey": null
                                   },
-                                  (v4/*: any*/)
+                                  (v3/*: any*/)
                                 ]
                               },
-                              (v5/*: any*/)
+                              (v4/*: any*/)
                             ]
                           },
-                          (v6/*: any*/)
+                          (v5/*: any*/)
                         ]
                       },
                       {
                         "kind": "LinkedHandle",
                         "alias": null,
                         "name": "orders",
-                        "args": (v3/*: any*/),
+                        "args": (v7/*: any*/),
                         "handle": "connection",
                         "key": "OrderList_orders",
                         "filters": null
                       },
-                      (v4/*: any*/)
+                      (v3/*: any*/)
                     ]
                   },
-                  (v5/*: any*/)
+                  (v4/*: any*/)
                 ]
               },
-              (v6/*: any*/)
+              (v5/*: any*/)
             ]
           },
           {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "customers",
-            "args": (v2/*: any*/),
+            "args": (v6/*: any*/),
             "handle": "connection",
             "key": "CustomerList_customers",
             "filters": null
@@ -362,7 +415,7 @@ return {
     "operationKind": "query",
     "name": "DashboardQuery",
     "id": null,
-    "text": "query DashboardQuery {\n  viewer {\n    id\n    totalCount\n    ...Items_viewer\n    ...CustomerList_viewer\n  }\n}\n\nfragment Items_viewer on Viewer {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment CustomerList_viewer on Viewer {\n  customers(first: 10) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
+    "text": "query DashboardQuery {\n  viewer {\n    id\n    totalCount\n    ...Items_viewer\n    ...CustomerList_viewer\n  }\n}\n\nfragment Items_viewer on Viewer {\n  items(first: 2) {\n    edges {\n      node {\n        id\n        ...Item_item\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment CustomerList_viewer on Viewer {\n  customers(first: 10) {\n    edges {\n      node {\n        id\n        ...Customer_customer\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  totalCount\n}\n\nfragment Customer_customer on Customer {\n  name\n  billingAddress\n  ...OrderList_customer\n}\n\nfragment OrderList_customer on Customer {\n  orders(first: 3) {\n    edges {\n      node {\n        id\n        ...Order_order\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Order_order on Order {\n  tag\n  createdAt\n}\n\nfragment Item_item on Item {\n  title\n  sellingPrice\n}\n",
     "metadata": {}
   }
 };

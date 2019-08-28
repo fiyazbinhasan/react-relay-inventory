@@ -190,7 +190,7 @@ const TopBar: React.SFC<Props> = props => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            Ware Sale
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -246,7 +246,7 @@ const TopBar: React.SFC<Props> = props => {
               </div>
             </div>
           ) : (
-            <Button color="secondary" href="/login">
+            <Button variant="outlined" color="secondary" href="/login">
               Login
             </Button>
           )}
