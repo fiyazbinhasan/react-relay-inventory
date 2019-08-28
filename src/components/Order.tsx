@@ -7,14 +7,12 @@ interface Props {
   order: Order_order;
 }
 
-class Order extends React.Component<Props> {
-  render() {
-    return (
-      <li>
-        {this.props.order.tag}, <i>{this.props.order.createdAt}</i>
-      </li>
-    );
-  }
+function Order(props: Props) {
+  return (
+    <li>
+      {props.order.tag}, <i>{props.order.createdAt}</i>
+    </li>
+  );
 }
 
 export default createFragmentContainer(Order, {

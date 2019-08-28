@@ -92,7 +92,7 @@ interface Props {
   cartItemsCount: number;
 }
 
-const TopBar: React.SFC<Props> = props => {
+function TopBar(props: Props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
@@ -256,7 +256,7 @@ const TopBar: React.SFC<Props> = props => {
       {renderMenu}
     </div>
   );
-};
+}
 
 const mapStateToProps = (state: AppState) => ({
   isLoggedIn: state.auth.isLoggedIn,

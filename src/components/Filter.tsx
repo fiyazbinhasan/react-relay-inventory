@@ -1,23 +1,10 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Popper, { PopperPlacementType } from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Fade from '@material-ui/core/Fade';
-import Paper from '@material-ui/core/Paper';
 import GridOnIcon from '@material-ui/icons/GridOn';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
-import {
-  Icon,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  OutlinedInput,
-  IconButton
-} from '@material-ui/core';
+import { FormControl, Select, MenuItem, IconButton } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

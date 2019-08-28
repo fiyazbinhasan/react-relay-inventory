@@ -18,7 +18,7 @@ interface Props {
   viewer: Items_viewer;
 }
 
-export const Items: React.FunctionComponent<Props> = props => {
+function Items(props: Props) {
   const classes = useStyles();
   function renderItems() {
     if (!props.viewer.items || !props.viewer.items.edges) {
@@ -42,7 +42,7 @@ export const Items: React.FunctionComponent<Props> = props => {
       </Grid>
     </div>
   );
-};
+}
 
 export default createRefetchContainer(
   Items,

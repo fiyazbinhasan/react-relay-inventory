@@ -20,38 +20,36 @@ interface AppProps {
   auth: AuthState;
 }
 
-class App extends React.Component<AppProps> {
-  render() {
-    return (
-      <Router>
-        <div>
-          <Route
-            path="/register"
-            render={props => (
-              <Register
-                {...props}
-                isRegistered={this.props.auth.isRegistered}
-                registerUser={this.props.registerUser}
-                registering={this.props.auth.registering}
-              />
-            )}
-          />
-          <Route
-            path="/login"
-            render={props => (
-              <Login
-                {...props}
-                isLoggedIn={this.props.auth.isLoggedIn}
-                loginUser={this.props.loginUser}
-                loggingIn={this.props.auth.loggingIn}
-              />
-            )}
-          />
-          <Route path="/" exact render={() => <Dashboard />} />
-        </div>
-      </Router>
-    );
-  }
+function App(props: AppProps) {
+  return (
+    <Router>
+      <div>
+        <Route
+          path="/register"
+          render={routeProps => (
+            <Register
+              {...routeProps}
+              isRegistered={props.auth.isRegistered}
+              registerUser={props.registerUser}
+              registering={props.auth.registering}
+            />
+          )}
+        />
+        <Route
+          path="/login"
+          render={routeProps => (
+            <Login
+              {...routeProps}
+              isLoggedIn={props.auth.isLoggedIn}
+              loginUser={props.loginUser}
+              loggingIn={props.auth.loggingIn}
+            />
+          )}
+        />
+        <Route path="/" exact render={() => <Dashboard />} />
+      </div>
+    </Router>
+  );
 }
 
 const mapStateToProps = (state: AppState) => ({

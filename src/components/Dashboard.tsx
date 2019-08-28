@@ -24,7 +24,7 @@ const query = graphql`
   }
 `;
 
-const Dashboard: React.FunctionComponent = () => {
+function Dashboard() {
   return (
     <QueryRenderer
       environment={environment}
@@ -56,6 +56,6 @@ const Dashboard: React.FunctionComponent = () => {
       }}
     />
   );
-};
+}
 
 export default Dashboard;

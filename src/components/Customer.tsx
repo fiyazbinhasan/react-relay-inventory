@@ -8,15 +8,13 @@ interface Props {
   customer: Customer_customer;
 }
 
-class Customer extends React.Component<Props> {
-  render() {
-    return (
-      <li>
-        <a href="">{this.props.customer.name} </a>
-        <OrderList customer={this.props.customer} />
-      </li>
-    );
-  }
+function Customer(props: Props) {
+  return (
+    <li>
+      <a href="">{props.customer.name} </a>
+      <OrderList customer={props.customer} />
+    </li>
+  );
 }
 
 export default createFragmentContainer(Customer, {

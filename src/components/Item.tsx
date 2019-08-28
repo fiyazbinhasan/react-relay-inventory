@@ -37,14 +37,11 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundSize: 200,
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center'
-      // boxShadow:
-      //   '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0)',
-      // borderRadius: '4px'
     }
   })
 );
 
-export const Item: React.SFC<Props> = props => {
+function Item(props: Props) {
   const classes = useStyles();
   return (
     <div>
@@ -57,14 +54,11 @@ export const Item: React.SFC<Props> = props => {
       />
       <div>
         <p className={classes.textEllipsis}>{props.item.title}</p>
-        {/* <p>
-          <i>${props.item.sellingPrice}</i>
-        </p> */}
         <Rating value={4} />
       </div>
     </div>
   );
-};
+}
 
 const mapStateToProps = (state: AppState) => ({
   isLoggedIn: state.auth.isLoggedIn

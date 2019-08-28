@@ -45,7 +45,7 @@ interface Props {
   description: string;
 }
 
-const HeroContent: React.FunctionComponent<Props> = props => {
+function HeroContent(props: Props) {
   const classes = useStyles();
   return (
     <div className={classes.heroContent}>
@@ -77,6 +77,6 @@ const HeroContent: React.FunctionComponent<Props> = props => {
       </Container>
     </div>
   );
-};
+}
 
 export default HeroContent;

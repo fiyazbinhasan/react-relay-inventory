@@ -9,7 +9,7 @@ interface Props {
   error: string;
 }
 
-const Inspector: React.SFC<Props> = props => {
+function Inspector(props: Props) {
   return (
     <Box mt={5}>
       <Typography variant="body2" color="textSecondary">
@@ -20,15 +20,11 @@ const Inspector: React.SFC<Props> = props => {
       </Typography>
     </Box>
   );
-};
+}
 
 const mapStateToProps = (state: AppState) => ({
   token: state.auth.token,
   error: state.auth.error
 });
 
-export default connect(
-  mapStateToProps
-)(Inspector);
-
-
+export default connect(mapStateToProps)(Inspector);

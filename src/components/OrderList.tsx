@@ -19,25 +19,23 @@ interface RelayProps {
 
 type Props = RelayProps & OwnProps;
 
-class OrderList extends React.Component<Props> {
-  renderOrders() {
-    if (!this.props.customer.orders || !this.props.customer.orders.edges) {
+function OrderList(props: Props) {
+  const renderOrders = () => {
+    if (!props.customer.orders || !props.customer.orders.edges) {
       throw new Error('assertion failed');
     }
-    return this.props.customer.orders.edges.map(edge => {
+    return props.customer.orders.edges.map(edge => {
       const node = edge && edge.node;
       if (!node) throw new Error('assertion failed');
       return <Order key={node.id} order={node} />;
     });
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        <ul>{this.renderOrders()}</ul>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <ul>{renderOrders()}</ul>
+    </div>
+  );
 }
 
 export default createFragmentContainer(OrderList, {
